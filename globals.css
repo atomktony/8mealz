@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* 8Mealz brand, sampled from the one-pager */
+  --color-brand-teal: #57aba9;        /* logo teal, decorative use */
+  --color-brand-teal-light: #71b7b6;
+  --color-brand-teal-dark: #367e7b;   /* section background with white text (AA 4.7:1) */
+  --color-brand-deep: #294d48;        /* headings, dark sections */
+  --color-brand-red: #a5182d;         /* CTAs, pricing section */
+  --color-brand-red-dark: #86121f;
+  --color-brand-gold: #ce8a2f;        /* logo dot, small accents */
+  --color-brand-cream: #f4efea;
+  --color-brand-ink: #1f3a36;
+
+  /* Map the legacy emerald utilities (merchant demo) onto brand teal */
+  --color-emerald-50: #eef7f7;
+  --color-emerald-100: #d6ecec;
+  --color-emerald-200: #b3dcdb;
+  --color-emerald-300: #8cc9c7;
+  --color-emerald-400: #71b7b6;
+  --color-emerald-500: #57aba9;
+  --color-emerald-600: #3f8f8c;
+  --color-emerald-700: #367e7b;
+  --color-emerald-800: #2f6a67;
+  --color-emerald-900: #294d48;
+  --color-emerald-950: #1a332f;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Allura", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-brand-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand-teal-light);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold uppercase tracking-wide transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 cursor-pointer;
+  font-family: var(--font-display);
+}
+
+@layer components {
+  .btn-red {
+    @apply btn bg-brand-red text-white shadow-[0_6px_18px_-6px_rgba(165,24,45,0.6)] hover:bg-brand-red-dark;
+  }
+  .btn-white {
+    @apply btn bg-white text-brand-deep shadow-sm hover:bg-brand-cream;
+  }
+  .btn-outline {
+    @apply btn border-2 border-current bg-transparent hover:bg-white/10;
+  }
+  .btn-teal {
+    @apply btn bg-brand-teal-dark text-white hover:bg-brand-deep;
+  }
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-brand-ink placeholder:text-slate-400 focus:border-brand-teal-dark focus:outline-none focus:ring-2 focus:ring-brand-teal/40;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold text-brand-deep;
+  }
+  .field-error {
+    @apply mt-1 text-xs font-medium text-brand-red;
+  }
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em];
+    font-family: var(--font-display);
+  }
+  .h-display {
+    font-family: var(--font-display);
+    @apply font-extrabold uppercase leading-[1.05] tracking-tight;
+  }
+  .script {
+    font-family: var(--font-script);
+    @apply font-normal normal-case tracking-normal;
+  }
+}
