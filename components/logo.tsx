@@ -1,14 +1,21 @@
 import Link from "next/link"
+import Image from "next/image"
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={["group inline-flex items-center gap-2", className].filter(Boolean).join(" ")}>
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-heading text-lg font-700 text-primary-foreground">
-        8
-      </span>
-      <span className="font-heading text-xl font-700 tracking-tight text-foreground">
-        Mealz
-      </span>
+    <Link
+      href="/"
+      aria-label="8Mealz home"
+      className={["inline-flex items-center", className].filter(Boolean).join(" ")}
+    >
+      <Image
+        src="/images/logo.png"
+        alt="8Mealz"
+        width={660}
+        height={360}
+        priority
+        className="h-9 w-auto"
+      />
     </Link>
   )
 }
