@@ -5,7 +5,7 @@ import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
 
 const photos = [
-  { src: "/images/market-1.png", alt: "Fresh produce and grain sacks at a Luanda market stall" },
+  { src: "/images/market-1.png", alt: "Fresh produce and grain sacks at a market stall in Praia, Cabo Verde" },
   { src: "/images/market-2.png", alt: "A family receiving a box of fresh food at home" },
   { src: "/images/market-3.png", alt: "A smiling market vendor at her well-stocked stall" },
 ]

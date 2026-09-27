@@ -74,12 +74,14 @@ export const extras: Extra[] = [
 ]
 
 export const neighborhoods: Neighborhood[] = [
-  { id: "maianga", name: "Maianga", city: "Luanda" },
-  { id: "rangel", name: "Rangel", city: "Luanda" },
-  { id: "cazenga", name: "Cazenga", city: "Luanda" },
-  { id: "viana", name: "Viana", city: "Luanda" },
-  { id: "kilamba", name: "Kilamba", city: "Luanda" },
-  { id: "talatona", name: "Talatona", city: "Luanda" },
+  { id: "plateau", name: "Plateau", city: "Praia" },
+  { id: "achada-santo-antonio", name: "Achada Santo António", city: "Praia" },
+  { id: "palmarejo", name: "Palmarejo", city: "Praia" },
+  { id: "fazenda", name: "Fazenda", city: "Praia" },
+  { id: "achada-grande", name: "Achada Grande", city: "Praia" },
+  { id: "tira-chapeu", name: "Tira Chapéu", city: "Praia" },
+  { id: "mindelo", name: "Mindelo", city: "São Vicente" },
+  { id: "assomada", name: "Assomada", city: "Santa Catarina" },
 ]
 
 export function getPackage(id: string): Pkg | undefined {
@@ -98,8 +100,8 @@ export function getNeighborhood(id: string): Neighborhood | undefined {
 export const voteCountries = [
   { id: "angola", name: "Angola" },
   { id: "mozambique", name: "Mozambique" },
-  { id: "cape-verde", name: "Cape Verde" },
   { id: "guinea-bissau", name: "Guinea-Bissau" },
+  { id: "sao-tome", name: "São Tomé and Príncipe" },
+  { id: "senegal", name: "Senegal" },
   { id: "brazil", name: "Brazil" },
-  { id: "portugal", name: "Portugal" },
 ]

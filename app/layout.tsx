@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description:
     "8Mealz turns your remittance into real meals for your family. Pay here, they pick up fresh food at a trusted local market.",
-  keywords: ["remittance", "food", "diaspora", "Angola", "Luanda", "send money home", "8Mealz"],
+  keywords: ["remittance", "food", "diaspora", "Cabo Verde", "Cape Verde", "Praia", "send money home", "8Mealz"],
   openGraph: {
     title: `${site.name} — ${site.tagline}`,
     description: "Send food home, not just money. Remittance you can taste.",

@@ -7,7 +7,7 @@ import { PARTNER_FEE_SMALL, PARTNER_FEE_LARGE, formatMoney } from "@/lib/pricing
 
 export const metadata = {
   title: "Become a market partner — 8Mealz",
-  description: "Join 8Mealz as a market partner in Luanda and reach families sending food from abroad.",
+  description: "Join 8Mealz as a market partner in Cabo Verde and reach families sending food from abroad.",
 }
 
 const benefits = [
@@ -40,7 +40,7 @@ export default function PartnersPage() {
                 <span className="text-sm font-600 text-accent">For market vendors</span>
                 <h1 className="mt-3 text-balance text-4xl sm:text-5xl">Grow your market with 8Mealz</h1>
                 <p className="mt-4 text-pretty leading-relaxed text-primary-foreground/80">
-                  Families abroad want to feed their loved ones in Luanda. Partner with us to source and pack fresh
+                  Families abroad want to feed their loved ones in Cabo Verde. Partner with us to source and pack fresh
                   baskets — we bring the orders, you bring the market you already know.
                 </p>
               </div>

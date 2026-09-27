@@ -51,7 +51,7 @@ export function Hero() {
             <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-border shadow-xl sm:aspect-square lg:aspect-4/5">
               <Image
                 src="/images/hero-market.png"
-                alt="A market vendor handing fresh food across a stall to a customer in Luanda"
+                alt="A market vendor handing fresh food across a stall to a customer in Praia, Cabo Verde"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
