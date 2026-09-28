@@ -13,7 +13,7 @@ export default function SendPage() {
           <div className="mx-auto max-w-4xl">
             <h1 className="text-balance text-3xl sm:text-4xl">Send food home</h1>
             <p className="mt-2 text-muted-foreground">
-              Choose a package, add extras, and we deliver fresh food to your family in Luanda.
+              Choose a package, add extras, and we deliver fresh food to your family in Cabo Verde.
             </p>
             <div className="mt-10">
               <Suspense fallback={<div className="text-muted-foreground">Loading…</div>}>

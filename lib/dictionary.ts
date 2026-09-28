@@ -81,7 +81,7 @@ export const dictionary = {
     },
     pilot: {
       title: "Join the pilot",
-      body: "We're opening in Luanda first. Reserve your spot and we'll reach out on WhatsApp to confirm your first order.",
+      body: "We're opening in Cabo Verde first, starting with Praia. Reserve your spot and we'll reach out on WhatsApp to confirm your first order.",
       perks: [
         "Free annual membership for founding senders",
         "Priority pickup at partner markets",
@@ -259,7 +259,7 @@ export const dictionary = {
     },
     pilot: {
       title: "Junte-se ao piloto",
-      body: "Estamos a abrir primeiro em Luanda. Reserve o seu lugar e falamos consigo no WhatsApp para confirmar a primeira encomenda.",
+      body: "Estamos a abrir primeiro em Cabo Verde, a começar pela Praia. Reserve o seu lugar e falamos consigo no WhatsApp para confirmar a primeira encomenda.",
       perks: [
         "Adesão anual gratuita para remetentes fundadores",
         "Levantamento prioritário nos mercados parceiros",
