@@ -13,6 +13,7 @@ import {
   type OrderStatus,
 } from "@/lib/store"
 import { revalidatePath } from "next/cache"
+import { createPilotSignupRecord } from "@/lib/airtable"
 
 // Shared honeypot: real users leave this empty. Bots fill it.
 const honeypot = z.string().optional()
@@ -46,6 +47,12 @@ export async function submitPilot(_prev: ActionResult, formData: FormData): Prom
   if (!parsed.success) return { ok: false, error: "Please check the form", fieldErrors: fieldErrors(parsed.error) }
   if (parsed.data.website) return { ok: true } // silently drop bots
   const { website, ...data } = parsed.data
+  try {
+    await createPilotSignupRecord(data)
+  } catch (err) {
+    console.error("Pilot signup failed to reach Airtable:", err)
+    return { ok: false, error: "Something went wrong. Please try again." }
+  }
   createSignup(data)
   return { ok: true }
 }
