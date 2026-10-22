@@ -4,6 +4,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://8mealz.vercel.app",
   whatsapp: "+2389000000",
   email: "hello@8mealz.com",
+  ordersEmail: "8mealz@foundationforfogo.org",
   social: {
     instagram: "https://instagram.com/8mealz",
     whatsapp: "https://wa.me/2389000000",
