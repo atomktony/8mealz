@@ -14,6 +14,8 @@ import {
 } from "@/lib/store"
 import { revalidatePath } from "next/cache"
 import { createPilotSignupRecord } from "@/lib/airtable"
+import { sendOrderConfirmation, sendOrderNotification, sendPartnerNotification } from "@/lib/email"
+import { rememberOrder } from "@/lib/order-session"
 
 // Shared honeypot: real users leave this empty. Bots fill it.
 const honeypot = z.string().optional()
@@ -72,7 +74,13 @@ export async function submitPartner(_prev: ActionResult, formData: FormData): Pr
   if (!parsed.success) return { ok: false, error: "Please check the form", fieldErrors: fieldErrors(parsed.error) }
   if (parsed.data.website) return { ok: true }
   const { website, ...data } = parsed.data
-  createPartner(data)
+  const partner = createPartner(data)
+  try {
+    await sendPartnerNotification(partner)
+  } catch (err) {
+    console.error("Partner application email failed:", err)
+    return { ok: false, error: "Something went wrong. Please try again." }
+  }
   return { ok: true }
 }
 
@@ -130,6 +138,19 @@ export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{
     totals,
   })
 
+  // The ops notification is the system of record for the pilot, so a failure
+  // here must surface to the user instead of silently dropping the order.
+  try {
+    await sendOrderNotification(order)
+  } catch (err) {
+    console.error("Order notification email failed:", err)
+    return { ok: false, error: "We couldn't submit your order. Please try again." }
+  }
+
+  // The sender's receipt is best-effort; the order already reached the team.
+  sendOrderConfirmation(order).catch((err) => console.error("Order confirmation email failed:", err))
+
+  await rememberOrder(order)
   return { ok: true, data: { code: order.code } }
 }
 

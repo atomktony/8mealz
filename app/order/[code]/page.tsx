@@ -6,12 +6,13 @@ import { Footer } from "@/components/footer"
 import { Container } from "@/components/container"
 import { ButtonLink } from "@/components/ui/button"
 import { getOrderByCode } from "@/lib/store"
+import { recallOrder } from "@/lib/order-session"
 import { getNeighborhood, getPackage, getExtra } from "@/lib/data"
 import { formatMoney } from "@/lib/pricing"
 
 export default async function OrderPage({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params
-  const order = getOrderByCode(code)
+  const order = getOrderByCode(code) ?? (await recallOrder(code))
   if (!order) notFound()
 
   const pkg = getPackage(order.packageId)
