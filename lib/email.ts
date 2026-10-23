@@ -7,11 +7,12 @@ import { site } from "./site"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Falls back to Resend's sandbox sender until the 8mealz.com domain is
-// verified. The sandbox can only deliver to the Resend account owner's inbox.
+// 8mealz.com is not yet verified in Resend, so sending from it returns 403.
+// Use the sandbox sender until the DNS records are added, then flip this to
+// `orders@${process.env.RESEND_EMAIL_DOMAIN}`. The sandbox can only deliver
+// to the Resend account owner's inbox (site.ordersEmail).
 function fromAddress(): string {
-  const domain = process.env.RESEND_EMAIL_DOMAIN
-  return domain ? `8Mealz <orders@${domain}>` : "8Mealz <onboarding@resend.dev>"
+  return "8Mealz <onboarding@resend.dev>"
 }
 
 function escapeHtml(value: string): string {

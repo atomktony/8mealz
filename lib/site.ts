@@ -4,7 +4,9 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://8mealz.vercel.app",
   whatsapp: "+2389000000",
   email: "hello@8mealz.com",
-  ordersEmail: "8mealz@foundationforfogo.org",
+  // Temporary: Resend's sandbox sender can only reach the account owner.
+  // Switch back to 8mealz@foundationforfogo.org once 8mealz.com is verified.
+  ordersEmail: "atomiktony@gmail.com",
   social: {
     instagram: "https://instagram.com/8mealz",
     whatsapp: "https://wa.me/2389000000",
