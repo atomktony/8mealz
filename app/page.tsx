@@ -9,6 +9,7 @@ import { Extras } from "@/components/home/extras"
 import { Pricing } from "@/components/home/pricing"
 import { Photos } from "@/components/home/photos"
 import { FounderNote } from "@/components/home/founder-note"
+import { Faq } from "@/components/home/faq"
 import { PilotSignup } from "@/components/home/pilot-signup"
 import { CountryVote } from "@/components/home/country-vote"
 
@@ -26,6 +27,7 @@ export default function HomePage() {
         <Pricing />
         <Photos />
         <FounderNote />
+        <Faq />
         <div className="py-16 lg:py-20">
           <PilotSignup />
         </div>

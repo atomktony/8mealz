@@ -18,7 +18,9 @@ export function ValueProps() {
               const Icon = icons[i]
               return (
                 <div key={item.title} className="rounded-xl border border-border bg-card p-6">
-                  <Icon className="h-6 w-6 text-primary" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal-50">
+                    <Icon className="h-6 w-6 text-teal-600" aria-hidden="true" />
+                  </span>
                   <h3 className="mt-4 font-heading text-base font-600">{item.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
                 </div>

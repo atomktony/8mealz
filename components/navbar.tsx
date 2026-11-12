@@ -25,12 +25,12 @@ export function Navbar() {
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <Logo />
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 md:flex" aria-label={t.a11y.primaryNav}>
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm font-500 text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-500 text-muted-foreground transition-colors hover:text-teal-700"
               >
                 {l.label}
               </Link>
@@ -45,7 +45,7 @@ export function Navbar() {
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground md:hidden"
-            aria-label="Menu"
+            aria-label={t.a11y.menu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
@@ -62,7 +62,7 @@ export function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-lg px-2 py-2.5 text-sm font-500 text-foreground hover:bg-secondary"
+                  className="rounded-lg px-2 py-2.5 text-sm font-500 text-foreground hover:bg-secondary hover:text-teal-700"
                 >
                   {l.label}
                 </Link>

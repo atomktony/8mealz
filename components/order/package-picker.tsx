@@ -2,7 +2,8 @@
 
 import { Check } from "lucide-react"
 import { packages } from "@/lib/data"
-import { formatMoney } from "@/lib/pricing"
+import { packageCopy } from "@/lib/catalog-copy"
+import { Price } from "../ui/price"
 import { useLang } from "@/lib/i18n"
 
 export function PackagePicker({ value, onChange }: { value: string; onChange: (id: string) => void }) {
@@ -47,7 +48,9 @@ export function PackagePicker({ value, onChange }: { value: string; onChange: (i
                   {t.order.popular}
                 </span>
               )}
-              <p className="mt-3 font-heading text-3xl font-700 text-primary">{formatMoney(pkg.price)}</p>
+              <p className="mt-3 font-heading text-3xl font-700 text-primary">
+                <Price amount={pkg.price} />
+              </p>
               <dl className="mt-3 flex gap-4 text-sm">
                 <div>
                   <dt className="text-muted-foreground">{t.order.serves}</dt>
@@ -57,14 +60,14 @@ export function PackagePicker({ value, onChange }: { value: string; onChange: (i
                 </div>
                 <div>
                   <dt className="text-muted-foreground">{t.order.feeds}</dt>
-                  <dd className="font-600">{pkg.feeds}</dd>
+                  <dd className="font-600">{packageCopy(t, pkg).feeds}</dd>
                 </div>
               </dl>
               <p className="mt-4 border-t border-border pt-3 text-xs font-600 uppercase tracking-wide text-muted-foreground">
                 {t.order.included}
               </p>
               <ul className="mt-2 flex flex-col gap-1.5 text-sm leading-relaxed">
-                {pkg.items.map((item) => (
+                {packageCopy(t, pkg).items.map((item) => (
                   <li key={item} className="flex gap-2">
                     <Check className="mt-1 h-3.5 w-3.5 shrink-0 text-primary" aria-hidden="true" />
                     <span>{item}</span>

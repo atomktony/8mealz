@@ -4,11 +4,7 @@ import Image from "next/image"
 import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
 
-const photos = [
-  { src: "/images/market-1.png", alt: "Fresh produce and grain sacks at a market stall in Praia, Cabo Verde" },
-  { src: "/images/market-2.png", alt: "A family receiving a box of fresh food at home" },
-  { src: "/images/market-3.png", alt: "A smiling market vendor at her well-stocked stall" },
-]
+const photos = ["/images/market-1.png", "/images/market-2.png", "/images/market-3.png"]
 
 export function Photos() {
   const { t } = useLang()
@@ -21,15 +17,15 @@ export function Photos() {
             <p className="mt-3 text-pretty text-muted-foreground">{t.photos.subtitle}</p>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {photos.map((photo, i) => (
+            {photos.map((src, i) => (
               <div
-                key={photo.src}
+                key={src}
                 className={[
                   "relative aspect-4/3 overflow-hidden rounded-2xl border border-border",
                   i === 0 ? "sm:col-span-2 sm:aspect-video lg:col-span-1 lg:aspect-4/3" : "",
                 ].join(" ")}
               >
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" />
+                <Image src={src} alt={t.media.photoAlts[i]} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" />
               </div>
             ))}
           </div>

@@ -10,7 +10,8 @@ import { OrderSummary } from "./order-summary"
 import { ReservationConfirmed } from "./reservation-confirmed"
 import { useLang } from "@/lib/i18n"
 import { extras, getExtra, getPackage, neighborhoods, packages, type Extra } from "@/lib/data"
-import { computeTotals, formatMoney } from "@/lib/pricing"
+import { computeTotals } from "@/lib/pricing"
+import { Price } from "../ui/price"
 import { placeOrder } from "@/app/actions"
 
 const emptyForm = {
@@ -30,7 +31,7 @@ function isValidPhone(value: string): boolean {
 }
 
 export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [packageId, setPackageId] = useState(initialPackageId)
   const [extraIds, setExtraIds] = useState<string[]>([])
   const [form, setForm] = useState<FormState>(emptyForm)
@@ -86,7 +87,7 @@ export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
     }
 
     startTransition(async () => {
-      const res = await placeOrder({ packageId: pkg.id, extraIds, ...form })
+      const res = await placeOrder({ packageId: pkg.id, extraIds, ...form }, lang)
       if (res.ok && res.data) {
         setConfirmedCode(res.data.code)
         window.scrollTo({ top: 0, behavior: "smooth" })
@@ -107,7 +108,18 @@ export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
     setError("")
   }
 
-  if (confirmedCode) return <ReservationConfirmed code={confirmedCode} onReset={reset} />
+  // Keep the sender's details so they only enter the second household's.
+  function startSecondFamily() {
+    setConfirmedCode(null)
+    setForm((prev) => ({ ...emptyForm, senderName: prev.senderName, senderPhone: prev.senderPhone }))
+    setExtraIds([])
+    setFieldErrors({})
+    setError("")
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
+  if (confirmedCode)
+    return <ReservationConfirmed code={confirmedCode} onReset={reset} onSecondFamily={startSecondFamily} />
 
   return (
     <>
@@ -222,7 +234,9 @@ export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
               {pkg.name}
               {selectedExtras.length > 0 && ` + ${selectedExtras.length}`}
             </p>
-            <p className="font-heading text-lg font-700 text-primary">{formatMoney(totals.total)}</p>
+            <p className="font-heading text-lg font-700 text-primary">
+              <Price amount={totals.total} />
+            </p>
           </div>
           <a
             href="#reserve-details"

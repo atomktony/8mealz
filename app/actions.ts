@@ -3,6 +3,7 @@
 import { z } from "zod"
 import { getExtra, getNeighborhood, getPackage } from "@/lib/data"
 import { computeTotals } from "@/lib/pricing"
+import { dictionary, type Lang } from "@/lib/dictionary"
 import {
   addVote,
   createOrder,
@@ -16,15 +17,16 @@ import { createPilotSignupRecord } from "@/lib/airtable"
 import { sendOrderNotification, sendPartnerNotification } from "@/lib/email"
 import { rememberOrder } from "@/lib/order-session"
 
-// Shared honeypot: real users leave this empty. Bots fill it.
-const honeypot = z.string().optional()
-
 export type ActionResult<T = undefined> =
   | { ok: true; data?: T }
   | { ok: false; error: string; fieldErrors?: Record<string, string> }
 
-const email = z.string().trim().email("Enter a valid email")
-const required = z.string().trim().min(1, "This field is required")
+type Messages = (typeof dictionary)["en"]["errors"]
+
+// Forms send the visitor's current language so errors come back in it.
+function messagesFor(lang: unknown): Messages {
+  return dictionary[(lang === "pt" ? "pt" : "en") as Lang].errors
+}
 
 function fieldErrors(err: z.ZodError): Record<string, string> {
   const out: Record<string, string> = {}
@@ -35,42 +37,57 @@ function fieldErrors(err: z.ZodError): Record<string, string> {
   return out
 }
 
-const pilotSchema = z.object({
-  name: required,
-  email,
-  phone: required,
-  city: required,
-  website: honeypot,
-})
+function fields(m: Messages) {
+  // An unselected <select> omits the field entirely, so cover "missing" too.
+  const text = () => z.string({ required_error: m.required, invalid_type_error: m.required })
+  const required = text().trim().min(1, m.required)
+  return {
+    // Shared honeypot: real users leave this empty. Bots fill it.
+    honeypot: z.string().optional(),
+    required,
+    email: text().trim().min(1, m.required).email(m.invalidEmail),
+    whatsapp: text()
+      .trim()
+      .min(1, m.required)
+      .regex(/^\+?[\d\s().-]{7,20}$/, m.invalidPhone)
+      .refine((value) => value.replace(/\D/g, "").length >= 7, m.invalidPhone),
+  }
+}
 
 export async function submitPilot(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const parsed = pilotSchema.safeParse(Object.fromEntries(formData))
-  if (!parsed.success) return { ok: false, error: "Please check the form", fieldErrors: fieldErrors(parsed.error) }
+  const m = messagesFor(formData.get("lang"))
+  const f = fields(m)
+  const parsed = z
+    .object({ name: f.required, email: f.email, phone: f.required, city: f.required, website: f.honeypot })
+    .safeParse(Object.fromEntries(formData))
+  if (!parsed.success) return { ok: false, error: m.checkForm, fieldErrors: fieldErrors(parsed.error) }
   if (parsed.data.website) return { ok: true } // silently drop bots
   const { website, ...data } = parsed.data
   try {
     await createPilotSignupRecord(data)
   } catch (err) {
     console.error("Pilot signup failed to reach Airtable:", err)
-    return { ok: false, error: "Something went wrong. Please try again." }
+    return { ok: false, error: m.somethingWrong }
   }
   createSignup(data)
   return { ok: true }
 }
 
-const partnerSchema = z.object({
-  business: required,
-  contact: required,
-  email,
-  phone: required,
-  neighborhood: required,
-  message: z.string().trim().optional().default(""),
-  website: honeypot,
-})
-
 export async function submitPartner(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const parsed = partnerSchema.safeParse(Object.fromEntries(formData))
-  if (!parsed.success) return { ok: false, error: "Please check the form", fieldErrors: fieldErrors(parsed.error) }
+  const m = messagesFor(formData.get("lang"))
+  const f = fields(m)
+  const parsed = z
+    .object({
+      business: f.required,
+      contact: f.required,
+      email: f.email,
+      phone: f.required,
+      neighborhood: f.required,
+      message: z.string().trim().optional().default(""),
+      website: f.honeypot,
+    })
+    .safeParse(Object.fromEntries(formData))
+  if (!parsed.success) return { ok: false, error: m.checkForm, fieldErrors: fieldErrors(parsed.error) }
   if (parsed.data.website) return { ok: true }
   const { website, ...data } = parsed.data
   const partner = createPartner(data)
@@ -78,49 +95,47 @@ export async function submitPartner(_prev: ActionResult, formData: FormData): Pr
     await sendPartnerNotification(partner)
   } catch (err) {
     console.error("Partner application email failed:", err)
-    return { ok: false, error: "Something went wrong. Please try again." }
+    return { ok: false, error: m.somethingWrong }
   }
   return { ok: true }
 }
 
-const voteSchema = z.object({ countryId: required })
-
 export async function submitVote(_prev: ActionResult, formData: FormData): Promise<ActionResult> {
-  const parsed = voteSchema.safeParse(Object.fromEntries(formData))
-  if (!parsed.success) return { ok: false, error: "Pick a country" }
+  const m = messagesFor(formData.get("lang"))
+  const parsed = z.object({ countryId: fields(m).required }).safeParse(Object.fromEntries(formData))
+  if (!parsed.success) return { ok: false, error: m.pickCountry }
   addVote(parsed.data.countryId)
   return { ok: true }
 }
 
-const whatsapp = z
-  .string()
-  .trim()
-  .regex(/^\+?[\d\s().-]{7,20}$/, "Enter a valid WhatsApp number")
-  .refine((value) => value.replace(/\D/g, "").length >= 7, "Enter a valid WhatsApp number")
+function orderSchema(m: Messages) {
+  const f = fields(m)
+  return z.object({
+    packageId: f.required,
+    extraIds: z.array(z.string()).max(10).default([]),
+    senderName: f.required,
+    senderPhone: f.whatsapp,
+    recipientName: f.required,
+    recipientPhone: f.whatsapp,
+    neighborhoodId: f.required,
+    notes: z.string().trim().optional().default(""),
+    website: f.honeypot,
+  })
+}
 
-const orderSchema = z.object({
-  packageId: required,
-  extraIds: z.array(z.string()).max(10).default([]),
-  senderName: required,
-  senderPhone: whatsapp,
-  recipientName: required,
-  recipientPhone: whatsapp,
-  neighborhoodId: required,
-  notes: z.string().trim().optional().default(""),
-  website: honeypot,
-})
+export type PlaceOrderInput = z.input<ReturnType<typeof orderSchema>>
 
-export type PlaceOrderInput = z.infer<typeof orderSchema>
-
-export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{ code: string }>> {
-  const parsed = orderSchema.safeParse(input)
-  if (!parsed.success) return { ok: false, error: "Please check the form", fieldErrors: fieldErrors(parsed.error) }
-  if (parsed.data.website) return { ok: false, error: "Rejected" }
+export async function placeOrder(input: PlaceOrderInput, lang?: Lang): Promise<ActionResult<{ code: string }>> {
+  const m = messagesFor(lang)
+  const parsed = orderSchema(m).safeParse(input)
+  if (!parsed.success) return { ok: false, error: m.checkForm, fieldErrors: fieldErrors(parsed.error) }
+  if (parsed.data.website) return { ok: false, error: m.somethingWrong }
 
   const data = parsed.data
   const pkg = getPackage(data.packageId)
-  if (!pkg) return { ok: false, error: "Unknown package" }
-  if (!getNeighborhood(data.neighborhoodId)) return { ok: false, error: "Unknown neighborhood" }
+  if (!pkg) return { ok: false, error: m.unknownPackage }
+  if (!getNeighborhood(data.neighborhoodId))
+    return { ok: false, error: m.unknownNeighborhood, fieldErrors: { neighborhoodId: m.unknownNeighborhood } }
 
   // Recompute the price on the server from trusted data. Never trust the client.
   const extraIds = [...new Set(data.extraIds)].filter((id) => getExtra(id))
@@ -149,7 +164,7 @@ export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{
     await sendOrderNotification(order)
   } catch (err) {
     console.error("Order notification email failed:", err)
-    return { ok: false, error: "We couldn't submit your order. Please try again." }
+    return { ok: false, error: m.orderFailed }
   }
 
   await rememberOrder(order)
@@ -158,7 +173,7 @@ export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{
 
 const statusValues = ["reserved", "confirmed", "ready", "collected"] as const
 const statusSchema = z.object({
-  code: required,
+  code: z.string().trim().min(1),
   status: z.enum(statusValues),
 })
 

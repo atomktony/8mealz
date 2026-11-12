@@ -8,10 +8,10 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-lg font-heading font-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none"
 
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-primary-foreground hover:bg-primary/90",
-  accent: "bg-accent text-accent-foreground hover:bg-accent/90",
-  outline: "border border-primary/30 text-foreground hover:bg-secondary",
-  ghost: "text-foreground hover:bg-secondary",
+  primary: "bg-primary text-primary-foreground hover:bg-teal-800",
+  accent: "bg-accent text-accent-foreground hover:bg-crimson-600",
+  outline: "border border-teal-600 bg-surface text-teal-700 hover:bg-teal-50",
+  ghost: "text-teal-700 hover:bg-secondary",
 }
 
 const sizes: Record<Size, string> = {

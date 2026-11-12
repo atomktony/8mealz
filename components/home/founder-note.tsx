@@ -21,7 +21,7 @@ export function FounderNote() {
             />
           </div>
           <div className="flex max-w-2xl flex-col gap-5">
-            <h2 id="founder-title" className="text-balance text-3xl text-primary sm:text-4xl">
+            <h2 id="founder-title" className="text-balance text-3xl text-foreground sm:text-4xl">
               {t.founder.title}
             </h2>
             <p className="text-pretty text-lg leading-relaxed text-foreground">{t.founder.p1}</p>

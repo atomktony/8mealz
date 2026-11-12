@@ -7,6 +7,7 @@ import "@fontsource/montserrat/700.css"
 import "@fontsource/allura/400.css"
 import "./globals.css"
 import { LanguageProvider } from "@/lib/i18n"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import { site } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#1b5e3a",
+  themeColor: "#73bfb6",
   width: "device-width",
   initialScale: 1,
 }
@@ -52,7 +53,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="bg-background">
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <WhatsAppButton />
+        </LanguageProvider>
         <Analytics />
       </body>
     </html>

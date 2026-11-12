@@ -4,9 +4,9 @@ import { languages } from "@/lib/dictionary"
 import { useLang } from "@/lib/i18n"
 
 export function LanguageToggle() {
-  const { lang, setLang } = useLang()
+  const { lang, setLang, t } = useLang()
   return (
-    <div className="inline-flex items-center rounded-lg border border-border bg-card p-0.5" role="group" aria-label="Language">
+    <div className="inline-flex items-center rounded-lg border border-border bg-card p-0.5" role="group" aria-label={t.a11y.language}>
       {languages.map(({ code, label }) => (
         <button
           key={code}

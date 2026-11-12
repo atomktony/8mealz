@@ -16,7 +16,7 @@ const statuses: OrderStatus[] = ["reserved", "confirmed", "ready", "collected"]
 
 const statusStyle: Record<OrderStatus, string> = {
   reserved: "bg-secondary text-secondary-foreground",
-  confirmed: "bg-accent/20 text-accent-foreground",
+  confirmed: "bg-gold-100 text-gold-600",
   ready: "bg-primary/15 text-primary",
   collected: "bg-muted text-muted-foreground",
 }

@@ -1,7 +1,8 @@
 "use client"
 
 import { extras } from "@/lib/data"
-import { formatMoney } from "@/lib/pricing"
+import { extraCopy } from "@/lib/catalog-copy"
+import { Price } from "../ui/price"
 import { useLang } from "@/lib/i18n"
 
 export function ExtrasPicker({ value, onToggle }: { value: string[]; onToggle: (id: string) => void }) {
@@ -31,10 +32,10 @@ export function ExtrasPicker({ value, onToggle }: { value: string[]; onToggle: (
                 className="h-5 w-5 shrink-0 accent-primary"
               />
               <span className="flex min-w-0 flex-1 flex-col">
-                <span className="text-sm font-600">{extra.name}</span>
-                <span className="text-xs text-muted-foreground">{extra.note}</span>
+                <span className="text-sm font-600">{extraCopy(t, extra).name}</span>
+                <span className="text-xs text-muted-foreground">{extraCopy(t, extra).note}</span>
               </span>
-              <span className="font-heading text-sm font-700 text-primary">{formatMoney(extra.price)}</span>
+              <Price amount={extra.price} className="font-heading text-sm font-700 text-primary" />
             </label>
           )
         })}

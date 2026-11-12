@@ -19,3 +19,9 @@ export const site = {
 } as const
 
 export type Site = typeof site
+
+export const WHATSAPP_PREFILL = "Olá, quero enviar comida para a minha família em Cabo Verde."
+
+export function whatsappLink(message: string = WHATSAPP_PREFILL): string {
+  return `${site.social.whatsapp}?text=${encodeURIComponent(message)}`
+}
