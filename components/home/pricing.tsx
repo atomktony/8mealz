@@ -33,7 +33,7 @@ export function Pricing() {
               </div>
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
-                <dd className="font-600 text-foreground">+ {formatMoney(exampleFee)}</dd>
+                <dd className="font-600 text-foreground">{formatMoney(exampleFee)}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-t border-primary/20 pt-3">
                 <dt className="font-600 text-foreground">{t.pricing.youPay}</dt>

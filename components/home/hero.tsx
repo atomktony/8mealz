@@ -34,7 +34,7 @@ export function Hero() {
             </div>
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">92%</dt>
+                <dt className="font-heading text-2xl font-700 text-primary">100%</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat1}</dd>
               </div>
               <div>
