@@ -18,15 +18,15 @@ export function PilotSignup() {
   return (
     <section id="pilot" className="scroll-mt-20">
       <Container>
-        <div className="overflow-hidden rounded-3xl bg-primary text-primary-foreground">
+        <div className="overflow-hidden rounded-3xl bg-teal-950 text-teal-100">
           <div className="grid gap-10 p-8 md:grid-cols-2 md:p-12 lg:p-14">
             <div>
-              <h2 className="text-balance text-3xl sm:text-4xl">{t.pilot.title}</h2>
-              <p className="mt-4 text-pretty leading-relaxed text-primary-foreground/80">{t.pilot.body}</p>
+              <h2 className="text-balance text-3xl text-teal-50 sm:text-4xl">{t.pilot.title}</h2>
+              <p className="mt-4 text-pretty leading-relaxed text-teal-100">{t.pilot.body}</p>
               <ul className="mt-6 space-y-2.5">
                 {t.pilot.perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-2 text-sm text-primary-foreground/90">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                  <li key={perk} className="flex items-start gap-2 text-sm text-teal-100">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gold-300" />
                     {perk}
                   </li>
                 ))}

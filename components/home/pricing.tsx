@@ -21,11 +21,11 @@ export function Pricing() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl sm:text-4xl">{t.pricing.title}</h2>
             <p className="mt-3 text-pretty text-muted-foreground">{t.pricing.subtitle}</p>
-            <p className="mt-8 text-balance font-heading text-2xl font-700 text-primary sm:text-3xl">
+            <p className="mt-8 text-balance font-heading text-2xl font-700 text-foreground sm:text-3xl">
               {t.pricing.statement}
             </p>
           </div>
-          <div className="mx-auto mt-10 max-w-md rounded-2xl border border-primary/20 bg-primary/10 p-7">
+          <div className="mx-auto mt-10 max-w-md rounded-2xl border border-teal-200 bg-teal-50 p-7">
             <h3 className="font-heading text-lg font-700 text-foreground">{t.pricing.exampleTitle}</h3>
             <dl className="mt-5 flex flex-col gap-3 text-sm">
               <div className="flex items-baseline justify-between gap-4">
@@ -38,7 +38,7 @@ export function Pricing() {
                 <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
                 <dd className="font-600 text-foreground">{formatMoney(exampleFee)}</dd>
               </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-primary/20 pt-3">
+              <div className="flex items-baseline justify-between gap-4 border-t border-teal-200 pt-3">
                 <dt className="font-600 text-foreground">{t.pricing.youPay}</dt>
                 <dd className="font-heading text-base font-700 text-foreground">
                   <Price amount={exampleTotal} />

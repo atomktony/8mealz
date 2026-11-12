@@ -29,31 +29,31 @@ export function Footer() {
   ]
 
   return (
-    <footer className="mt-24 border-t border-border bg-secondary/40">
+    <footer className="mt-24 bg-teal-950 text-teal-100">
       <Container>
         <div className="grid gap-10 py-14 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">{t.footer.tagline}</p>
+            <Logo size="footer" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-teal-100">{t.footer.tagline}</p>
             <div className="mt-5 flex items-center gap-3">
               <a
                 href={site.social.instagram}
                 aria-label="Instagram"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-teal-800 text-teal-200 transition-colors hover:bg-teal-900 hover:text-teal-50"
               >
                 <Instagram className="h-4 w-4" />
               </a>
               <a
                 href={site.social.whatsapp}
                 aria-label="WhatsApp"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-teal-800 text-teal-200 transition-colors hover:bg-teal-900 hover:text-teal-50"
               >
                 <MessageCircle className="h-4 w-4" />
               </a>
               <a
                 href={site.social.linkedin}
                 aria-label="LinkedIn"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-teal-800 text-teal-200 transition-colors hover:bg-teal-900 hover:text-teal-50"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
@@ -61,11 +61,11 @@ export function Footer() {
           </div>
           {cols.map((col) => (
             <div key={col.title}>
-              <h3 className="font-heading text-sm font-700 uppercase tracking-wide text-foreground">{col.title}</h3>
+              <h3 className="font-heading text-sm font-700 uppercase tracking-wide text-teal-50">{col.title}</h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.href + l.label}>
-                    <Link href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    <Link href={l.href} className="text-sm text-teal-200 transition-colors hover:text-teal-50">
                       {l.label}
                     </Link>
                   </li>
@@ -74,9 +74,9 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="flex flex-col gap-3 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-teal-800 py-6 text-xs text-teal-100 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            &copy; {site.credit.year} <span className="font-600 text-foreground">{site.credit.label}</span>. {t.footer.rights}
+            &copy; {site.credit.year} <span className="font-600 text-teal-50">{site.credit.label}</span>. {t.footer.rights}
           </p>
           <p className="max-w-md text-pretty sm:text-right">{t.footer.beta}</p>
         </div>

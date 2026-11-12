@@ -1,8 +1,40 @@
 @import "tailwindcss";
 
+/* 8Mealz brand palette, taken from the logo. Tailwind v4 has no
+   tailwind.config; colors defined here become utilities (bg-teal-600 etc). */
+@theme {
+  --color-teal-50: #f0f9f8;
+  --color-teal-100: #d9f0ed;
+  --color-teal-200: #b7e2dc;
+  --color-teal-300: #8fd1c9;
+  --color-teal-400: #73bfb6; /* brand. Decorative shapes only, never text */
+  --color-teal-500: #5aa89f;
+  --color-teal-600: #468a82; /* large text (>=24px or bold >=19px) and UI borders only */
+  --color-teal-700: #386e68; /* smallest teal allowed for body text on light (5.9:1) */
+  --color-teal-800: #2e5955;
+  --color-teal-900: #264a47;
+  --color-teal-950: #142b29;
+
+  --color-crimson-50: #fdf2f4;
+  --color-crimson-100: #fbe1e5;
+  --color-crimson-400: #c8475c;
+  --color-crimson-500: #9f263a; /* brand */
+  --color-crimson-600: #87203a;
+  --color-crimson-700: #6e1a2e;
+  --color-crimson-900: #4a1120;
+
+  --color-gold-50: #fbf6ee;
+  --color-gold-100: #f5ead6;
+  --color-gold-300: #dcc08f;
+  --color-gold-400: #bb8a4f; /* brand */
+  --color-gold-500: #a3773f;
+  --color-gold-600: #85602f; /* smallest gold allowed for small text on light (5.4:1) */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
@@ -13,6 +45,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -28,21 +62,26 @@
 }
 
 :root {
-  --background: #fbf8f2;
-  --foreground: #221e17;
+  --background: #faf9f6;
+  --surface: #ffffff;
+  --foreground: #1c2a28; /* text-primary */
   --card: #ffffff;
-  --card-foreground: #221e17;
-  --primary: #1b5e3a;
-  --primary-foreground: #fbf8f2;
-  --secondary: #efe7d6;
-  --secondary-foreground: #221e17;
-  --muted: #f1ece1;
-  --muted-foreground: #6b6355;
-  --accent: #e0a526;
-  --accent-foreground: #221e17;
-  --border: #e4dbc9;
-  --input: #e4dbc9;
-  --ring: #1b5e3a;
+  --card-foreground: #1c2a28;
+  /* teal-700: white text on it is 5.9:1. teal-500 + white is only 2.8:1. */
+  --primary: #386e68;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f9f8; /* teal-50 */
+  --secondary-foreground: #264a47;
+  --muted: #f0f9f8;
+  --muted-foreground: #5a6b68; /* text-secondary, 5.4:1 on background */
+  --accent: #9f263a; /* crimson-500, white text 7.5:1 */
+  --accent-foreground: #ffffff;
+  --destructive: #9f263a;
+  --success: #386e68;
+  --border: #e4e9e8;
+  --input: #e4e9e8;
+  /* teal-600: teal-400 is only 2.0:1 against the background, below the 3:1 a focus ring needs */
+  --ring: #468a82;
   --radius: 0.75rem;
 }
 

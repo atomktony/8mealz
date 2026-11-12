@@ -42,7 +42,7 @@ export function ReservationConfirmed({
 
       <section
         aria-labelledby="second-family-title"
-        className="flex flex-col gap-4 rounded-2xl border border-accent bg-accent/15 p-6 sm:flex-row sm:items-center"
+        className="flex flex-col gap-4 rounded-2xl border border-crimson-100 bg-crimson-50 p-6 sm:flex-row sm:items-center"
       >
         <UsersRound className="h-8 w-8 shrink-0 text-primary" aria-hidden="true" />
         <div className="flex-1">

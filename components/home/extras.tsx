@@ -31,7 +31,9 @@ export function Extras() {
               return (
                 <div key={extra.id} className="rounded-xl border border-border bg-card p-5">
                   <div className="flex items-center justify-between">
-                    <Icon className="h-5 w-5 text-primary" />
+                    <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50">
+                      <Icon className="h-5 w-5 text-teal-600" aria-hidden="true" />
+                    </span>
                     <Price amount={extra.price} className="font-heading text-sm font-700 text-primary" />
                   </div>
                   <h3 className="mt-4 font-heading text-base font-600">{copy.name}</h3>

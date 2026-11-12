@@ -14,7 +14,7 @@ export function Hero() {
       <Container>
         <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:pt-11.5 lg:pb-24">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-600 text-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-gold-300 bg-gold-50 px-3 py-1 text-xs font-600 uppercase tracking-wide text-gold-600">
               <ShieldCheck className="h-3.5 w-3.5" />
               {t.hero.eyebrow}
             </span>
@@ -38,15 +38,15 @@ export function Hero() {
             </div>
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">100%</dt>
+                <dt className="font-heading text-2xl font-700 text-teal-600">100%</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat1}</dd>
               </div>
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">Praia</dt>
+                <dt className="font-heading text-2xl font-700 text-teal-600">Praia</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat2}</dd>
               </div>
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">24h</dt>
+                <dt className="font-heading text-2xl font-700 text-teal-600">24h</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat3}</dd>
               </div>
             </dl>
