@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 
-// Header 36px tall, footer 32px. Width follows the SVG's 377x215 ratio.
-const heights = { header: "h-9", footer: "h-8" } as const
+// 32px tall in header and footer. Width follows the SVG's 377x215 ratio.
+const heights = { header: "h-8", footer: "h-8" } as const
 
 export function Logo({ size = "header", className }: { size?: keyof typeof heights; className?: string }) {
   return (

@@ -1,49 +1,66 @@
 "use client"
 
-import { ShoppingBasket, CreditCard, PackageCheck } from "lucide-react"
 import { Container } from "../container"
+import { SectionHeading } from "../section-heading"
+import { Blobs } from "./blobs"
 import { useLang } from "@/lib/i18n"
 import { kriol } from "@/lib/dictionary"
 
-const icons = [ShoppingBasket, CreditCard, PackageCheck]
+function CurlyArrow({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 120 40"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M4 26C18 26 24 9 37 11C50 13 45 32 34 28C23 24 40 13 60 18C78 22 93 22 108 20" />
+      <path d="M100 13L109 20L100 27" />
+    </svg>
+  )
+}
 
 export function HowItWorks() {
   const { t } = useLang()
+  const words = t.how.title.split(" ")
   const lastStep = t.how.steps.length - 1
+
   return (
-    <section id="how" className="scroll-mt-20 bg-teal-950 text-teal-100">
+    <section id="how" aria-labelledby="how-title" className="relative isolate scroll-mt-20 overflow-hidden">
+      <Blobs />
       <Container>
         <div className="py-16 lg:py-24">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance text-3xl text-teal-50 sm:text-4xl">{t.how.title}</h2>
-            <p lang="kea" className="mt-4 text-pretty text-lg font-500 italic leading-relaxed text-teal-200">
-              {kriol.how}
-            </p>
-          </div>
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
-            {t.how.steps.map((s, i) => {
-              const Icon = icons[i]
-              const isLast = i === lastStep
-              return (
-                <div key={s.title} className="relative">
-                  <div
+          <SectionHeading id="how-title" align="center">
+            <span className="block">{words.slice(0, -1).join(" ")}</span>
+            <span className="block">{words[words.length - 1]}</span>
+          </SectionHeading>
+          <p lang="kea" className="mx-auto mt-5 max-w-[640px] text-pretty text-center text-[17px] italic leading-relaxed text-teal-700">
+            {kriol.how}
+          </p>
+
+          <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8 lg:mt-16">
+            {t.how.steps.map((step, i) => (
+              <li key={step.title}>
+                <div className="flex h-10 items-center gap-6">
+                  <span
                     className={[
-                      "flex h-12 w-12 items-center justify-center rounded-xl bg-teal-900 text-teal-200 ring-1 ring-teal-800",
-                      // The final step, where the family collects, gets the crimson glow.
-                      isLast ? "shadow-[0_0_28px_4px_rgb(159_38_58/0.55)] ring-crimson-500" : "",
+                      "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal-950 font-heading text-sm font-800 text-surface",
+                      i === lastStep ? "ring-4 ring-crimson-200" : "",
                     ].join(" ")}
                   >
-                    <Icon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                  <div className="mt-5 flex items-baseline gap-2">
-                    <span className="font-heading text-sm font-700 text-gold-300">{`0${i + 1}`}</span>
-                    <h3 className="font-heading text-lg font-600 text-teal-50">{s.title}</h3>
-                  </div>
-                  <p className="mt-2 text-sm leading-relaxed text-teal-100">{s.body}</p>
+                    {i + 1}
+                  </span>
+                  {i < lastStep && <CurlyArrow className="hidden h-10 w-[120px] text-foreground md:block" />}
                 </div>
-              )
-            })}
-          </div>
+                <h3 className="mt-5 font-heading text-lg font-800 text-foreground lg:text-xl">{step.title}</h3>
+                <p className="mt-2 max-w-[320px] text-pretty text-[15px] leading-relaxed text-muted-foreground">{step.body}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </Container>
     </section>
