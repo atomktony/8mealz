@@ -11,7 +11,7 @@ export function Pricing() {
   const { t } = useLang()
   const examplePrice = getPackage(EXAMPLE_PACKAGE_ID)?.price ?? 0
   const exampleFee = Math.round(examplePrice * SERVICE_FEE_RATE * 100) / 100
-  const exampleFood = Math.round((examplePrice - exampleFee) * 100) / 100
+  const exampleTotal = Math.round((examplePrice + exampleFee) * 100) / 100
 
   return (
     <section id="pricing" className="scroll-mt-20">
@@ -28,17 +28,21 @@ export function Pricing() {
             <h3 className="font-heading text-lg font-700 text-foreground">{t.pricing.exampleTitle}</h3>
             <dl className="mt-5 flex flex-col gap-3 text-sm">
               <div className="flex items-baseline justify-between gap-4">
-                <dt className="text-muted-foreground">{t.pricing.youPay}</dt>
-                <dd className="font-heading text-base font-700 text-foreground">{formatMoney(examplePrice)}</dd>
+                <dt className="text-muted-foreground">{t.pricing.packagePrice}</dt>
+                <dd className="font-600 text-foreground">{formatMoney(examplePrice)}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
-                <dd className="font-600 text-foreground">{formatMoney(exampleFee)}</dd>
+                <dd className="font-600 text-foreground">+ {formatMoney(exampleFee)}</dd>
               </div>
               <div className="flex items-baseline justify-between gap-4 border-t border-primary/20 pt-3">
+                <dt className="font-600 text-foreground">{t.pricing.youPay}</dt>
+                <dd className="font-heading text-base font-700 text-foreground">{formatMoney(exampleTotal)}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4">
                 <dt className="font-600 text-foreground">{t.pricing.familyGets}</dt>
                 <dd className="text-right font-heading text-base font-700 text-primary">
-                  {formatMoney(exampleFood)}{" "}
+                  {formatMoney(examplePrice)}{" "}
                   <span className="font-sans text-sm font-400 text-muted-foreground">{t.pricing.worthOfFood}</span>
                 </dd>
               </div>
