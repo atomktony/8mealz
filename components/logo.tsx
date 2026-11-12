@@ -15,7 +15,7 @@ export function Logo({ className }: { className?: string }) {
         height={40}
         sizes="120px"
         quality={75}
-        className="h-10 w-auto object-contain object-left"
+        className="h-10 w-[120px] object-contain object-left"
       />
     </Link>
   )

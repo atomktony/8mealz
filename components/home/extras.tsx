@@ -4,7 +4,7 @@ import { Flame, Apple, Smartphone, SprayCan } from "lucide-react"
 import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
 import { extras } from "@/lib/data"
-import { formatMoney } from "@/lib/pricing"
+import { Price } from "../ui/price"
 
 const icons: Record<string, typeof Flame> = {
   gas: Flame,
@@ -30,7 +30,7 @@ export function Extras() {
                 <div key={extra.id} className="rounded-xl border border-border bg-card p-5">
                   <div className="flex items-center justify-between">
                     <Icon className="h-5 w-5 text-primary" />
-                    <span className="font-heading text-sm font-700 text-primary">{formatMoney(extra.price)}</span>
+                    <Price amount={extra.price} className="font-heading text-sm font-700 text-primary" />
                   </div>
                   <h3 className="mt-4 font-heading text-base font-600">{extra.name}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{extra.note}</p>

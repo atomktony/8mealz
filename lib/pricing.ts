@@ -10,8 +10,23 @@ export const SERVICE_FEE_RATE = 0.08 // 8% service fee at checkout
 export const MARKUP_RATE = 0.08 // 8% markup baked into partner sourcing
 
 
+// Static display-only rate so European senders can read prices in euros.
+// Charges are always in USD. Update this monthly.
+export const EUR_PER_USD = 0.92
+export const EUR_RATE_UPDATED = "2026-11"
+
 export function formatMoney(amount: number): string {
   return `${CURRENCY_SYMBOL}${amount.toFixed(2)}`
+}
+
+/** "$58" for whole amounts, "$62.64" otherwise. */
+export function formatUsd(amount: number): string {
+  return Number.isInteger(amount) ? `${CURRENCY_SYMBOL}${amount}` : formatMoney(amount)
+}
+
+/** Approximate euro equivalent, rounded to the nearest euro: "~€53". */
+export function formatEurApprox(amount: number): string {
+  return `~€${Math.round(amount * EUR_PER_USD)}`
 }
 
 export type PriceLine = {

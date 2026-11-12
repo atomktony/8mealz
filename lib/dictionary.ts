@@ -88,6 +88,34 @@ export const dictionary = {
       signature: "Antonio Sousa, co-founder of 8Mealz, Praia",
       photoAlt: "Antonio Sousa, co-founder of 8Mealz",
     },
+    faq: {
+      title: "Questions families ask",
+      subtitle: "Still unsure? Message us on WhatsApp and a real person answers.",
+      items: [
+        {
+          q: "Does my family need a smartphone?",
+          a: "No. The pickup code goes by SMS or WhatsApp, so any phone works.",
+        },
+        { q: "What ID does my family show at pickup?", a: "Just the code. No ID required." },
+        { q: "How long until they can collect?", a: "Usually within 24 hours of your order being confirmed." },
+        { q: "Can I send to someone outside Praia?", a: "Not yet. Praia first. Mindelo and Assomada are next." },
+        {
+          q: "What if the market is out of an item?",
+          a: "We swap it for something of equal value and tell you what changed.",
+        },
+        {
+          q: "How do I pay during the pilot?",
+          a: "You confirm on WhatsApp, then we send you the payment options. Nothing is charged online.",
+        },
+      ],
+    },
+    whatsappFab: {
+      label: "Chat on WhatsApp",
+      aria: "Chat with 8Mealz on WhatsApp (opens in a new tab)",
+    },
+    currency: {
+      note: "Euro prices are approximate and updated monthly. You are charged in USD.",
+    },
     pilot: {
       title: "Join the pilot",
       body: "We're opening in Cabo Verde first, starting with Praia. Reserve your spot and we'll reach out on WhatsApp to confirm your first order.",
@@ -177,6 +205,10 @@ export const dictionary = {
       reference: "Reservation reference",
       whatsapp: "Message us on WhatsApp",
       another: "Reserve another package",
+      secondTitle: "Supporting a second household?",
+      secondBody:
+        "Many senders look after parents and a sibling. Reserve a basket for a second family now. We'll keep your details, you only add theirs.",
+      secondCta: "Send to a second family",
       errRequired: "This field is required",
       errPhone: "Enter a valid WhatsApp number",
     },
@@ -283,6 +315,43 @@ export const dictionary = {
       signature: "Antonio Sousa, cofundador da 8Mealz, Praia",
       photoAlt: "Antonio Sousa, cofundador da 8Mealz",
     },
+    faq: {
+      title: "Perguntas que as famílias fazem",
+      subtitle: "Ainda com dúvidas? Fale connosco no WhatsApp e uma pessoa real responde.",
+      items: [
+        {
+          q: "A minha família precisa de um smartphone?",
+          a: "Não. O código de levantamento vai por SMS ou WhatsApp, por isso qualquer telemóvel serve.",
+        },
+        {
+          q: "Que identificação mostra a minha família no levantamento?",
+          a: "Apenas o código. Não é preciso identificação.",
+        },
+        {
+          q: "Quanto tempo até poderem levantar?",
+          a: "Normalmente dentro de 24 horas após a confirmação da encomenda.",
+        },
+        {
+          q: "Posso enviar para alguém fora da Praia?",
+          a: "Ainda não. Primeiro a Praia. Mindelo e Assomada vêm a seguir.",
+        },
+        {
+          q: "E se o mercado não tiver um produto?",
+          a: "Trocamos por algo de igual valor e dizemos-lhe o que mudou.",
+        },
+        {
+          q: "Como pago durante o piloto?",
+          a: "Confirma no WhatsApp e depois enviamos-lhe as opções de pagamento. Nada é cobrado online.",
+        },
+      ],
+    },
+    whatsappFab: {
+      label: "Falar no WhatsApp",
+      aria: "Falar com a 8Mealz no WhatsApp (abre num novo separador)",
+    },
+    currency: {
+      note: "Os preços em euros são aproximados e atualizados mensalmente. A cobrança é feita em USD.",
+    },
     pilot: {
       title: "Junte-se ao piloto",
       body: "Estamos a abrir primeiro em Cabo Verde, a começar pela Praia. Reserve o seu lugar e falamos consigo no WhatsApp para confirmar a primeira encomenda.",
@@ -372,6 +441,10 @@ export const dictionary = {
       reference: "Referência da reserva",
       whatsapp: "Fale connosco no WhatsApp",
       another: "Reservar outro pacote",
+      secondTitle: "Apoia uma segunda casa?",
+      secondBody:
+        "Muitos remetentes ajudam os pais e um irmão. Reserve já um cabaz para uma segunda família. Guardamos os seus dados, só adiciona os deles.",
+      secondCta: "Enviar para uma segunda família",
       errRequired: "Este campo é obrigatório",
       errPhone: "Introduza um número de WhatsApp válido",
     },

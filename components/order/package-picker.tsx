@@ -2,7 +2,7 @@
 
 import { Check } from "lucide-react"
 import { packages } from "@/lib/data"
-import { formatMoney } from "@/lib/pricing"
+import { Price } from "../ui/price"
 import { useLang } from "@/lib/i18n"
 
 export function PackagePicker({ value, onChange }: { value: string; onChange: (id: string) => void }) {
@@ -47,7 +47,9 @@ export function PackagePicker({ value, onChange }: { value: string; onChange: (i
                   {t.order.popular}
                 </span>
               )}
-              <p className="mt-3 font-heading text-3xl font-700 text-primary">{formatMoney(pkg.price)}</p>
+              <p className="mt-3 font-heading text-3xl font-700 text-primary">
+                <Price amount={pkg.price} />
+              </p>
               <dl className="mt-3 flex gap-4 text-sm">
                 <div>
                   <dt className="text-muted-foreground">{t.order.serves}</dt>

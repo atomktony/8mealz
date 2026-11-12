@@ -5,7 +5,7 @@ import { Container } from "../container"
 import { ButtonLink } from "../ui/button"
 import { useLang } from "@/lib/i18n"
 import { packages } from "@/lib/data"
-import { formatMoney } from "@/lib/pricing"
+import { Price } from "../ui/price"
 
 export function Packages() {
   const { t } = useLang()
@@ -33,7 +33,7 @@ export function Packages() {
                 )}
                 <div className="flex items-baseline justify-between">
                   <h3 className="font-heading text-xl font-700">{pkg.name}</h3>
-                  <span className="font-heading text-2xl font-700 text-primary">{formatMoney(pkg.price)}</span>
+                  <Price amount={pkg.price} className="font-heading text-2xl font-700 text-primary" />
                 </div>
                 <div className="mt-3 flex flex-wrap gap-3 text-xs text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5">

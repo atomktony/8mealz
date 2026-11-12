@@ -4,6 +4,7 @@ import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
 import { getPackage } from "@/lib/data"
 import { SERVICE_FEE_RATE, formatMoney } from "@/lib/pricing"
+import { Price } from "../ui/price"
 
 const EXAMPLE_PACKAGE_ID = "family-feast"
 
@@ -29,7 +30,9 @@ export function Pricing() {
             <dl className="mt-5 flex flex-col gap-3 text-sm">
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-muted-foreground">{t.pricing.packagePrice}</dt>
-                <dd className="font-600 text-foreground">{formatMoney(examplePrice)}</dd>
+                <dd className="font-600 text-foreground">
+                  <Price amount={examplePrice} />
+                </dd>
               </div>
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
@@ -37,18 +40,23 @@ export function Pricing() {
               </div>
               <div className="flex items-baseline justify-between gap-4 border-t border-primary/20 pt-3">
                 <dt className="font-600 text-foreground">{t.pricing.youPay}</dt>
-                <dd className="font-heading text-base font-700 text-foreground">{formatMoney(exampleTotal)}</dd>
+                <dd className="font-heading text-base font-700 text-foreground">
+                  <Price amount={exampleTotal} />
+                </dd>
               </div>
               <div className="flex items-baseline justify-between gap-4">
                 <dt className="font-600 text-foreground">{t.pricing.familyGets}</dt>
                 <dd className="text-right font-heading text-base font-700 text-primary">
-                  {formatMoney(examplePrice)}{" "}
+                  <Price amount={examplePrice} />{" "}
                   <span className="font-sans text-sm font-400 text-muted-foreground">{t.pricing.worthOfFood}</span>
                 </dd>
               </div>
             </dl>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.pricing.exampleNote}</p>
           </div>
+          <p className="mx-auto mt-4 max-w-md text-center text-xs leading-relaxed text-muted-foreground">
+            {t.currency.note}
+          </p>
         </div>
       </Container>
     </section>
