@@ -23,7 +23,7 @@ export const dictionary = {
       ctaPrimary: "Send a food package",
       ctaSecondary: "See how it works",
       stat1: "of every dollar reaches the table",
-      stat2: "trusted market partners",
+      stat2: "launching with trusted local markets",
       stat3: "average pickup time",
     },
     problem: {
@@ -208,7 +208,7 @@ export const dictionary = {
       ctaPrimary: "Enviar um pacote de comida",
       ctaSecondary: "Ver como funciona",
       stat1: "de cada dólar chega à mesa",
-      stat2: "mercados parceiros de confiança",
+      stat2: "a arrancar com mercados locais de confiança",
       stat3: "tempo médio de levantamento",
     },
     problem: {

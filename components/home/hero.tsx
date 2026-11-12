@@ -38,7 +38,7 @@ export function Hero() {
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat1}</dd>
               </div>
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">100+</dt>
+                <dt className="font-heading text-2xl font-700 text-primary">Praia</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat2}</dd>
               </div>
               <div>
