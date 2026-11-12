@@ -1,23 +1,27 @@
 import Link from "next/link"
 import type { ComponentProps, ReactNode } from "react"
 
-type Variant = "primary" | "accent" | "outline" | "ghost"
-type Size = "sm" | "md" | "lg"
+type Variant = "primary" | "accent" | "outline" | "ghost" | "brand" | "pillOutline" | "light"
+type Size = "sm" | "md" | "lg" | "pill"
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg font-heading font-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none"
+  "inline-flex items-center justify-center gap-2 font-heading font-600 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none"
 
 const variants: Record<Variant, string> = {
   primary: "bg-primary text-primary-foreground hover:bg-teal-800",
   accent: "bg-accent text-accent-foreground hover:bg-crimson-600",
   outline: "border border-teal-600 bg-surface text-teal-700 hover:bg-teal-50",
   ghost: "text-teal-700 hover:bg-secondary",
+  brand: "bg-brand text-brand-foreground hover:bg-teal-500",
+  pillOutline: "border border-border bg-surface text-foreground hover:border-teal-600 hover:text-teal-700",
+  light: "bg-surface text-foreground hover:bg-teal-50",
 }
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3 text-sm",
-  md: "h-11 px-5 text-sm",
-  lg: "h-13 px-7 text-base",
+  sm: "h-9 rounded-lg px-3 text-sm",
+  md: "h-11 rounded-lg px-5 text-sm",
+  lg: "h-13 rounded-lg px-7 text-base",
+  pill: "rounded-full px-7 py-3 text-[15px]",
 }
 
 export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {

@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Hero } from "@/components/home/hero"
+import { Stats } from "@/components/home/stats"
 import { Problem } from "@/components/home/problem"
 import { HowItWorks } from "@/components/home/how-it-works"
 import { ValueProps } from "@/components/home/value-props"
@@ -12,6 +13,7 @@ import { FounderNote } from "@/components/home/founder-note"
 import { Faq } from "@/components/home/faq"
 import { PilotSignup } from "@/components/home/pilot-signup"
 import { CountryVote } from "@/components/home/country-vote"
+import { FinalCta } from "@/components/home/final-cta"
 
 export default function HomePage() {
   return (
@@ -19,6 +21,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <Stats />
         <Problem />
         <HowItWorks />
         <ValueProps />
@@ -28,12 +31,11 @@ export default function HomePage() {
         <Photos />
         <FounderNote />
         <Faq />
-        <div className="py-16 lg:py-20">
-          <PilotSignup />
-        </div>
+        <PilotSignup />
         <CountryVote />
+        <FinalCta />
       </main>
-      <Footer />
+      <Footer flush />
     </>
   )
 }

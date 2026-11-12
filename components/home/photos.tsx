@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Container } from "../container"
+import { SectionHeading } from "../section-heading"
 import { useLang } from "@/lib/i18n"
 
 const photos = ["/images/market-1.png", "/images/market-2.png", "/images/market-3.png"]
@@ -9,24 +10,34 @@ const photos = ["/images/market-1.png", "/images/market-2.png", "/images/market-
 export function Photos() {
   const { t } = useLang()
   return (
-    <section>
+    <section aria-labelledby="photos-title">
       <Container>
-        <div className="py-16 lg:py-20">
-          <div className="max-w-2xl">
-            <h2 className="text-balance text-3xl sm:text-4xl">{t.photos.title}</h2>
-            <p className="mt-3 text-pretty text-muted-foreground">{t.photos.subtitle}</p>
-          </div>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="py-16 lg:py-24">
+          <SectionHeading id="photos-title">{t.photos.title}</SectionHeading>
+          <p className="mt-4 max-w-[540px] text-pretty text-[17px] leading-relaxed text-muted-foreground">
+            {t.photos.subtitle}
+          </p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-3 sm:items-center lg:gap-6">
             {photos.map((src, i) => (
-              <div
+              <figure
                 key={src}
                 className={[
-                  "relative aspect-4/3 overflow-hidden rounded-2xl border border-border",
-                  i === 0 ? "sm:col-span-2 sm:aspect-video lg:col-span-1 lg:aspect-4/3" : "",
+                  "relative overflow-hidden rounded-2xl",
+                  i === 1 ? "aspect-4/3 sm:aspect-[3/4]" : "aspect-4/3 sm:aspect-4/5",
                 ].join(" ")}
               >
-                <Image src={src} alt={t.media.photoAlts[i]} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" />
-              </div>
+                <Image
+                  src={src}
+                  alt={t.media.photoAlts[i]}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  quality={75}
+                  className="object-cover"
+                />
+                <figcaption className="absolute bottom-3 left-3 rounded-full bg-surface px-3 py-1 text-xs font-600 text-foreground shadow-sm">
+                  {t.home.photoCaptions[i]}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

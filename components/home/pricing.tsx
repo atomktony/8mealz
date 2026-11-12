@@ -1,10 +1,11 @@
 "use client"
 
 import { Container } from "../container"
+import { SectionHeading } from "../section-heading"
+import { Price } from "../ui/price"
 import { useLang } from "@/lib/i18n"
 import { getPackage } from "@/lib/data"
 import { SERVICE_FEE_RATE, formatMoney } from "@/lib/pricing"
-import { Price } from "../ui/price"
 
 const EXAMPLE_PACKAGE_ID = "family-feast"
 
@@ -14,49 +15,48 @@ export function Pricing() {
   const exampleFee = Math.round(examplePrice * SERVICE_FEE_RATE * 100) / 100
   const exampleTotal = Math.round((examplePrice + exampleFee) * 100) / 100
 
+  const rows = [
+    { label: t.pricing.packagePrice, value: <Price amount={examplePrice} /> },
+    { label: t.pricing.serviceFee, value: formatMoney(exampleFee) },
+    { label: t.pricing.youPay, value: <Price amount={exampleTotal} /> },
+  ]
+
   return (
-    <section id="pricing" className="scroll-mt-20">
+    <section id="pricing" aria-labelledby="pricing-title" className="scroll-mt-20">
       <Container>
-        <div className="py-16 lg:py-24">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-balance text-3xl sm:text-4xl">{t.pricing.title}</h2>
-            <p className="mt-3 text-pretty text-muted-foreground">{t.pricing.subtitle}</p>
-            <p className="mt-8 text-balance font-heading text-2xl font-700 text-foreground sm:text-3xl">
-              {t.pricing.statement}
-            </p>
-          </div>
-          <div className="mx-auto mt-10 max-w-md rounded-2xl border border-teal-200 bg-teal-50 p-7">
-            <h3 className="font-heading text-lg font-700 text-foreground">{t.pricing.exampleTitle}</h3>
-            <dl className="mt-5 flex flex-col gap-3 text-sm">
-              <div className="flex items-baseline justify-between gap-4">
-                <dt className="text-muted-foreground">{t.pricing.packagePrice}</dt>
-                <dd className="font-600 text-foreground">
-                  <Price amount={examplePrice} />
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4">
-                <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
-                <dd className="font-600 text-foreground">{formatMoney(exampleFee)}</dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4 border-t border-teal-200 pt-3">
-                <dt className="font-600 text-foreground">{t.pricing.youPay}</dt>
-                <dd className="font-heading text-base font-700 text-foreground">
-                  <Price amount={exampleTotal} />
-                </dd>
-              </div>
-              <div className="flex items-baseline justify-between gap-4">
-                <dt className="font-600 text-foreground">{t.pricing.familyGets}</dt>
-                <dd className="text-right font-heading text-base font-700 text-primary">
+        <div className="flex flex-col items-center py-16 text-center lg:py-24">
+          <p className="text-xs font-600 uppercase tracking-wide text-gold-600">{t.pricing.title}</p>
+          <SectionHeading id="pricing-title" align="center" className="mt-4">
+            {t.home.pricingHeadline}
+          </SectionHeading>
+          <p className="mt-4 text-[17px] text-muted-foreground">{t.home.noMembership}</p>
+          <p className="mt-2 max-w-[540px] text-pretty text-sm leading-relaxed text-muted-foreground">
+            {t.pricing.subtitle}
+          </p>
+
+          <div className="mt-12 w-full max-w-[480px] rounded-2xl border border-border bg-card p-7 text-left">
+            <h3 className="font-heading text-lg font-800 text-foreground">{t.pricing.exampleTitle}</h3>
+            <dl className="mt-4 text-[15px]">
+              {rows.map((row) => (
+                <div
+                  key={row.label}
+                  className="flex items-baseline justify-between gap-4 border-b border-dashed border-border py-3.5"
+                >
+                  <dt className="text-muted-foreground">{row.label}</dt>
+                  <dd className="font-600 text-foreground">{row.value}</dd>
+                </div>
+              ))}
+              <div className="flex items-baseline justify-between gap-4 pt-4">
+                <dt className="font-700 text-foreground">{t.pricing.familyGets}</dt>
+                <dd className="text-right font-heading text-lg font-800 text-teal-700">
                   <Price amount={examplePrice} />{" "}
                   <span className="font-sans text-sm font-400 text-muted-foreground">{t.pricing.worthOfFood}</span>
                 </dd>
               </div>
             </dl>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.pricing.exampleNote}</p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">{t.pricing.exampleNote}</p>
           </div>
-          <p className="mx-auto mt-4 max-w-md text-center text-xs leading-relaxed text-muted-foreground">
-            {t.currency.note}
-          </p>
+          <p className="mt-4 max-w-[480px] text-pretty text-xs leading-relaxed text-muted-foreground">{t.currency.note}</p>
         </div>
       </Container>
     </section>

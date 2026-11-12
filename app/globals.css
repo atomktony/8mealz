@@ -15,8 +15,14 @@
   --color-teal-900: #264a47;
   --color-teal-950: #142b29;
 
+  /* The logo teal as a solid fill for primary pill buttons. White on it is
+     2.0:1, below AA; kept deliberately at the owner's request. */
+  --color-brand: #73bfb6;
+  --color-brand-foreground: #ffffff;
+
   --color-crimson-50: #fdf2f4;
   --color-crimson-100: #fbe1e5;
+  --color-crimson-200: #f3b5c0;
   --color-crimson-400: #c8475c;
   --color-crimson-500: #9f263a; /* brand */
   --color-crimson-600: #87203a;
@@ -52,8 +58,7 @@
   --color-ring: var(--ring);
 
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-script: "Allura", ui-serif, cursive;
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -102,11 +107,29 @@
   h5,
   h6 {
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: -0.02em;
   }
 }
 
-.font-script {
-  font-family: var(--font-script);
+/* Fade-up for section headings. Elements start visible (server HTML, no JS);
+   the Reveal component only hides ones still below the fold, then shows them. */
+.reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 600ms ease-out,
+    transform 600ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-pending,
+  .reveal-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

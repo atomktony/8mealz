@@ -13,6 +13,7 @@ export const dictionary = {
       packages: "Packages",
       pricing: "Pricing",
       partners: "For partners",
+      faq: "FAQ",
       send: "Send food",
     },
     hero: {
@@ -108,6 +109,24 @@ export const dictionary = {
           a: "You confirm on WhatsApp, then we send you the payment options. Nothing is charged online.",
         },
       ],
+    },
+    home: {
+      pickupTitle: "Pickup confirmed",
+      pickupDetail: "Maria, Palmarejo, 14:32",
+      statsHeading: "8Mealz in numbers",
+      pitchTitle: "Real markets, real food, real families",
+      pitchBody:
+        "Every package is packed by a vetted market in your family's own neighborhood. They collect it from a vendor they already know, with a pickup code instead of cash.",
+      explore: "Explore packages",
+      statsImageAlt: "Fresh produce and grain sacks at a partner market stall in Praia",
+      pricingHeadline: "8% per order. That's it.",
+      noMembership: "No membership fee during the pilot",
+      photoCaptions: ["Plateau", "Palmarejo", "Achada Santo António"],
+      founderName: "Antonio Sousa",
+      founderRole: "Co-founder of 8Mealz, Praia",
+      finalCta: "Ready to send food home?",
+      contact: "Contact",
+      voteLabel: "Countries you can vote for",
     },
     whatsappFab: {
       label: "Chat on WhatsApp",
@@ -235,6 +254,7 @@ export const dictionary = {
     },
     a11y: {
       menu: "Menu",
+      closeMenu: "Close menu",
       primaryNav: "Primary",
       language: "Language",
     },
@@ -344,6 +364,7 @@ export const dictionary = {
       packages: "Pacotes",
       pricing: "Preços",
       partners: "Parceiros",
+      faq: "Perguntas",
       send: "Enviar comida",
     },
     hero: {
@@ -448,6 +469,24 @@ export const dictionary = {
           a: "Confirma no WhatsApp e depois enviamos-lhe as opções de pagamento. Nada é cobrado online.",
         },
       ],
+    },
+    home: {
+      pickupTitle: "Levantamento confirmado",
+      pickupDetail: "Maria, Palmarejo, 14:32",
+      statsHeading: "A 8Mealz em números",
+      pitchTitle: "Mercados reais, comida real, famílias reais",
+      pitchBody:
+        "Cada pacote é preparado por um mercado verificado no bairro da sua família. Levantam-no a um vendedor que já conhecem, com um código em vez de dinheiro.",
+      explore: "Ver pacotes",
+      statsImageAlt: "Legumes frescos e sacos de cereais numa banca de mercado parceira na Praia",
+      pricingHeadline: "8% por encomenda. Só isso.",
+      noMembership: "Sem taxa de adesão durante o piloto",
+      photoCaptions: ["Plateau", "Palmarejo", "Achada Santo António"],
+      founderName: "Antonio Sousa",
+      founderRole: "Cofundador da 8Mealz, Praia",
+      finalCta: "Pronto para enviar comida para casa?",
+      contact: "Contacto",
+      voteLabel: "Países em que pode votar",
     },
     whatsappFab: {
       label: "Falar no WhatsApp",
@@ -575,6 +614,7 @@ export const dictionary = {
     },
     a11y: {
       menu: "Menu",
+      closeMenu: "Fechar menu",
       primaryNav: "Principal",
       language: "Idioma",
     },
