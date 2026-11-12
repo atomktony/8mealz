@@ -13,7 +13,7 @@ export type Order = {
   packageId: string
   extraIds: string[]
   senderName: string
-  senderEmail: string
+  senderPhone: string
   recipientName: string
   recipientPhone: string
   neighborhoodId: string
@@ -97,7 +97,6 @@ export function createOrder(input: Omit<Order, "id" | "code" | "status" | "creat
     createdAt: new Date().toISOString(),
   }
   db.orders.set(order.code, order)
-  if (order.totals.membership > 0) markMembershipCharged(order.senderEmail)
   return order
 }
 

@@ -54,7 +54,7 @@ export async function sendOrderNotification(order: Order): Promise<void> {
       <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:16px 0 4px">Recipient</h2>
       <table style="border-collapse:collapse">${row("Name", order.recipientName)}${row("WhatsApp", order.recipientPhone)}</table>
       <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:16px 0 4px">Sender</h2>
-      <table style="border-collapse:collapse">${row("Name", order.senderName)}${row("Email", order.senderEmail)}</table>
+      <table style="border-collapse:collapse">${row("Name", order.senderName)}${row("WhatsApp", order.senderPhone)}</table>
       <h2 style="font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:#6b7280;margin:16px 0 4px">Totals</h2>
       <table style="border-collapse:collapse">${lines}${row("Total", formatMoney(order.totals.total))}</table>
     </div>`
@@ -63,38 +63,12 @@ export async function sendOrderNotification(order: Order): Promise<void> {
     {
       from: fromAddress(),
       to: [site.ordersEmail],
-      replyTo: order.senderEmail,
       subject: `New 8Mealz order ${order.code} — ${pkg?.name ?? order.packageId} for ${order.recipientName}`,
       html,
     },
     { idempotencyKey: `order-notification/${order.code}` },
   )
   if (error) throw new Error(`Order notification failed: ${error.message}`)
-}
-
-export async function sendOrderConfirmation(order: Order): Promise<void> {
-  const { pkg, extras, pickup } = orderDetails(order)
-  const html = `
-    <div style="font-family:Inter,Arial,sans-serif;color:#111827;max-width:600px">
-      <h1 style="font-size:20px;margin:0 0 8px">Your 8Mealz order is reserved</h1>
-      <p style="margin:0 0 16px">Hi ${escapeHtml(order.senderName)}, we&apos;ve reserved fresh food for ${escapeHtml(order.recipientName)}. Our team will confirm the details with you on WhatsApp.</p>
-      <p style="margin:0 0 4px;color:#6b7280">Pickup code</p>
-      <p style="font-size:28px;font-weight:700;letter-spacing:.1em;margin:0 0 16px">${escapeHtml(order.code)}</p>
-      <table style="border-collapse:collapse">${row("Package", pkg?.name ?? order.packageId)}${row("Extras", extras.join(", ") || "None")}${row("Pickup", pickup)}${row("Total", formatMoney(order.totals.total))}</table>
-      <p style="margin:16px 0 0;color:#6b7280">Share the pickup code with ${escapeHtml(order.recipientName)} — they will need it at the market. Questions? Reply to this email.</p>
-    </div>`
-
-  const { error } = await resend.emails.send(
-    {
-      from: fromAddress(),
-      to: [order.senderEmail],
-      replyTo: site.ordersEmail,
-      subject: `Your 8Mealz pickup code: ${order.code}`,
-      html,
-    },
-    { idempotencyKey: `order-confirmation/${order.code}` },
-  )
-  if (error) throw new Error(`Order confirmation failed: ${error.message}`)
 }
 
 export async function sendPartnerNotification(partner: Partner): Promise<void> {

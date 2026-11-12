@@ -8,13 +8,12 @@ import {
   createOrder,
   createPartner,
   createSignup,
-  membershipApplies,
   updateOrderStatus,
   type OrderStatus,
 } from "@/lib/store"
 import { revalidatePath } from "next/cache"
 import { createPilotSignupRecord } from "@/lib/airtable"
-import { sendOrderConfirmation, sendOrderNotification, sendPartnerNotification } from "@/lib/email"
+import { sendOrderNotification, sendPartnerNotification } from "@/lib/email"
 import { rememberOrder } from "@/lib/order-session"
 
 // Shared honeypot: real users leave this empty. Bots fill it.
@@ -93,13 +92,19 @@ export async function submitVote(_prev: ActionResult, formData: FormData): Promi
   return { ok: true }
 }
 
+const whatsapp = z
+  .string()
+  .trim()
+  .regex(/^\+?[\d\s().-]{7,20}$/, "Enter a valid WhatsApp number")
+  .refine((value) => value.replace(/\D/g, "").length >= 7, "Enter a valid WhatsApp number")
+
 const orderSchema = z.object({
   packageId: required,
-  extraIds: z.array(z.string()).default([]),
+  extraIds: z.array(z.string()).max(10).default([]),
   senderName: required,
-  senderEmail: email,
+  senderPhone: whatsapp,
   recipientName: required,
-  recipientPhone: required,
+  recipientPhone: whatsapp,
   neighborhoodId: required,
   notes: z.string().trim().optional().default(""),
   website: honeypot,
@@ -118,19 +123,19 @@ export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{
   if (!getNeighborhood(data.neighborhoodId)) return { ok: false, error: "Unknown neighborhood" }
 
   // Recompute the price on the server from trusted data. Never trust the client.
+  const extraIds = [...new Set(data.extraIds)].filter((id) => getExtra(id))
   const items = [{ label: pkg.name, price: pkg.price }]
-  for (const id of data.extraIds) {
+  for (const id of extraIds) {
     const extra = getExtra(id)
     if (extra) items.push({ label: extra.name, price: extra.price })
   }
-  const includeMembership = membershipApplies(data.senderEmail)
-  const totals = computeTotals(items, includeMembership)
+  const totals = computeTotals(items, false)
 
   const order = createOrder({
     packageId: data.packageId,
-    extraIds: data.extraIds.filter((id) => getExtra(id)),
+    extraIds,
     senderName: data.senderName,
-    senderEmail: data.senderEmail,
+    senderPhone: data.senderPhone,
     recipientName: data.recipientName,
     recipientPhone: data.recipientPhone,
     neighborhoodId: data.neighborhoodId,
@@ -146,9 +151,6 @@ export async function placeOrder(input: PlaceOrderInput): Promise<ActionResult<{
     console.error("Order notification email failed:", err)
     return { ok: false, error: "We couldn't submit your order. Please try again." }
   }
-
-  // The sender's receipt is best-effort; the order already reached the team.
-  sendOrderConfirmation(order).catch((err) => console.error("Order confirmation email failed:", err))
 
   await rememberOrder(order)
   return { ok: true, data: { code: order.code } }
