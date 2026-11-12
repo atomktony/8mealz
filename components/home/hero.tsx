@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <Container>
-        <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:pt-11.5 lg:pb-24">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-600 text-primary">
               <ShieldCheck className="h-3.5 w-3.5" />

@@ -2,15 +2,17 @@
 
 import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
-import { MEMBERSHIP_FEE, formatMoney } from "@/lib/pricing"
+import { getPackage } from "@/lib/data"
+import { SERVICE_FEE_RATE, formatMoney } from "@/lib/pricing"
+
+const EXAMPLE_PACKAGE_ID = "family-feast"
 
 export function Pricing() {
   const { t } = useLang()
-  const cards = [
-    { title: t.pricing.membership, value: formatMoney(MEMBERSHIP_FEE), note: t.pricing.membershipNote },
-    { title: t.pricing.service, value: "8%", note: t.pricing.serviceNote },
-    { title: t.pricing.markup, value: "8%", note: t.pricing.markupNote },
-  ]
+  const examplePrice = getPackage(EXAMPLE_PACKAGE_ID)?.price ?? 0
+  const exampleFee = Math.round(examplePrice * SERVICE_FEE_RATE * 100) / 100
+  const exampleFood = Math.round((examplePrice - exampleFee) * 100) / 100
+
   return (
     <section id="pricing" className="scroll-mt-20">
       <Container>
@@ -18,15 +20,30 @@ export function Pricing() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl sm:text-4xl">{t.pricing.title}</h2>
             <p className="mt-3 text-pretty text-muted-foreground">{t.pricing.subtitle}</p>
+            <p className="mt-8 text-balance font-heading text-2xl font-700 text-primary sm:text-3xl">
+              {t.pricing.statement}
+            </p>
           </div>
-          <div className="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-3">
-            {cards.map((c) => (
-              <div key={c.title} className="rounded-2xl border border-border bg-card p-7 text-center">
-                <p className="text-sm font-600 uppercase tracking-wide text-muted-foreground">{c.title}</p>
-                <p className="mt-3 font-heading text-4xl font-700 text-primary">{c.value}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.note}</p>
+          <div className="mx-auto mt-10 max-w-md rounded-2xl border border-primary/20 bg-primary/10 p-7">
+            <h3 className="font-heading text-lg font-700 text-foreground">{t.pricing.exampleTitle}</h3>
+            <dl className="mt-5 flex flex-col gap-3 text-sm">
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">{t.pricing.youPay}</dt>
+                <dd className="font-heading text-base font-700 text-foreground">{formatMoney(examplePrice)}</dd>
               </div>
-            ))}
+              <div className="flex items-baseline justify-between gap-4">
+                <dt className="text-muted-foreground">{t.pricing.serviceFee}</dt>
+                <dd className="font-600 text-foreground">{formatMoney(exampleFee)}</dd>
+              </div>
+              <div className="flex items-baseline justify-between gap-4 border-t border-primary/20 pt-3">
+                <dt className="font-600 text-foreground">{t.pricing.familyGets}</dt>
+                <dd className="text-right font-heading text-base font-700 text-primary">
+                  {formatMoney(exampleFood)}{" "}
+                  <span className="font-sans text-sm font-400 text-muted-foreground">{t.pricing.worthOfFood}</span>
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{t.pricing.exampleNote}</p>
           </div>
         </div>
       </Container>
