@@ -51,7 +51,7 @@ export function Select({ className, children, ...props }: ComponentProps<"select
 // Honeypot: visually hidden, off from tab order. Bots fill it; humans never see it.
 export function Honeypot() {
   return (
-    <div aria-hidden="true" className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
+    <div aria-hidden="true" className="absolute -left-[9999px] opacity-0 h-0 w-0 overflow-hidden">
       <label>
         Website
         <input type="text" name="website" tabIndex={-1} autoComplete="off" />
