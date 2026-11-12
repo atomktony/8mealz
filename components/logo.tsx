@@ -11,10 +11,11 @@ export function Logo({ className }: { className?: string }) {
       <Image
         src="/images/logo.png"
         alt="8Mealz"
-        width={660}
-        height={360}
-        priority
-        className="h-9 w-auto"
+        width={120}
+        height={40}
+        sizes="120px"
+        quality={75}
+        className="h-10 w-auto object-contain object-left"
       />
     </Link>
   )

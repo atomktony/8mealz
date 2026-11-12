@@ -9,9 +9,6 @@ export const MEMBERSHIP_FEE = 8 // charged once per sender email per year
 export const SERVICE_FEE_RATE = 0.08 // 8% service fee at checkout
 export const MARKUP_RATE = 0.08 // 8% markup baked into partner sourcing
 
-// Monthly fees for market partners.
-export const PARTNER_FEE_SMALL = 18
-export const PARTNER_FEE_LARGE = 80
 
 export function formatMoney(amount: number): string {
   return `${CURRENCY_SYMBOL}${amount.toFixed(2)}`

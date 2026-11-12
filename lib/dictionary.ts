@@ -81,6 +81,13 @@ export const dictionary = {
       title: "Real markets, real food",
       subtitle: "A look at the partner markets your family will visit.",
     },
+    founder: {
+      title: "Why we built this",
+      p1: "I grew up in Cabo Verde. I know what it means when the money from abroad arrives late, or arrives and disappears. Every family here has that story.",
+      p2: "8Mealz exists so the food gets there, every time. You pay once, your family picks up at a market they already trust, and you get a notification the moment they collect. That is the whole product.",
+      signature: "Antonio Sousa, co-founder of 8Mealz, Praia",
+      photoAlt: "Antonio Sousa, co-founder of 8Mealz",
+    },
     pilot: {
       title: "Join the pilot",
       body: "We're opening in Cabo Verde first, starting with Praia. Reserve your spot and we'll reach out on WhatsApp to confirm your first order.",
@@ -180,6 +187,7 @@ export const dictionary = {
       phone: "WhatsApp number",
       neighborhood: "Neighborhood",
       selectNeighborhood: "Select a neighborhood",
+      neighborhoodHint: "Praia first. Mindelo and Assomada coming soon.",
       message: "Tell us about your market",
       messageHint: "Size, what you sell, and how many orders you could handle weekly.",
       submit: "Send application",
@@ -267,6 +275,13 @@ export const dictionary = {
     photos: {
       title: "Mercados reais, comida real",
       subtitle: "Um olhar sobre os mercados parceiros que a sua família vai visitar.",
+    },
+    founder: {
+      title: "Porque criámos isto",
+      p1: "Cresci em Cabo Verde. Sei o que significa quando o dinheiro de fora chega tarde, ou chega e desaparece. Todas as famílias daqui têm essa história.",
+      p2: "A 8Mealz existe para que a comida chegue, sempre. Paga uma vez, a sua família levanta num mercado em que já confia, e recebe uma notificação no momento em que levantam. É esse o produto.",
+      signature: "Antonio Sousa, cofundador da 8Mealz, Praia",
+      photoAlt: "Antonio Sousa, cofundador da 8Mealz",
     },
     pilot: {
       title: "Junte-se ao piloto",
@@ -367,6 +382,7 @@ export const dictionary = {
       phone: "Número de WhatsApp",
       neighborhood: "Bairro",
       selectNeighborhood: "Selecione um bairro",
+      neighborhoodHint: "Primeiro a Praia. Mindelo e Assomada em breve.",
       message: "Fale-nos do seu mercado",
       messageHint: "Tamanho, o que vende e quantas encomendas poderia cumprir por semana.",
       submit: "Enviar candidatura",

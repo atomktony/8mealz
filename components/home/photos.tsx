@@ -29,7 +29,7 @@ export function Photos() {
                   i === 0 ? "sm:col-span-2 sm:aspect-video lg:col-span-1 lg:aspect-4/3" : "",
                 ].join(" ")}
               >
-                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" />
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 768px) 100vw, 33vw" quality={75} className="object-cover" />
               </div>
             ))}
           </div>

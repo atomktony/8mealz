@@ -3,10 +3,9 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { Container } from "@/components/container"
 import { PartnerForm } from "@/components/partners/partner-form"
-import { PARTNER_FEE_SMALL, PARTNER_FEE_LARGE, formatMoney } from "@/lib/pricing"
 
 export const metadata = {
-  title: "Become a market partner — 8Mealz",
+  title: "Become a market partner",
   description: "Join 8Mealz as a market partner in Cabo Verde and reach families sending food from abroad.",
 }
 
@@ -23,8 +22,8 @@ const benefits = [
   },
   {
     icon: Store,
-    title: "Simple monthly plans",
-    body: `Small stalls from ${formatMoney(PARTNER_FEE_SMALL)}/mo, larger markets from ${formatMoney(PARTNER_FEE_LARGE)}/mo.`,
+    title: "Free during pilot",
+    body: "No monthly fee while we launch. You earn on every basket you fulfil. Monthly plans come later, only once there are enough orders to justify them.",
   },
 ]
 

@@ -43,14 +43,19 @@ export function PartnerForm() {
           <Input id="phone" name="phone" type="tel" autoComplete="tel" required />
         </Field>
       </div>
-      <Field label={t.partners.neighborhood} htmlFor="neighborhood" error={state.fieldErrors?.neighborhood}>
+      <Field
+        label={t.partners.neighborhood}
+        htmlFor="neighborhood"
+        error={state.fieldErrors?.neighborhood}
+        hint={t.partners.neighborhoodHint}
+      >
         <Select id="neighborhood" name="neighborhood" defaultValue="" required>
           <option value="" disabled>
             {t.partners.selectNeighborhood}
           </option>
           {neighborhoods.map((n) => (
             <option key={n.id} value={n.name}>
-              {n.name}, {n.city}
+              {n.name}
             </option>
           ))}
         </Select>
