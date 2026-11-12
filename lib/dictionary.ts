@@ -233,6 +233,110 @@ export const dictionary = {
       invalidEmail: "Enter a valid email",
       somethingWrong: "Something went wrong. Please try again.",
     },
+    a11y: {
+      menu: "Menu",
+      primaryNav: "Primary",
+      language: "Language",
+    },
+    media: {
+      heroAlt:
+        "A market vendor handing a basket of fresh greens, grains and dried fish to a smiling young woman at an open-air market",
+      heroBadge: "Food, delivered home",
+      photoAlts: [
+        "Fresh produce and grain sacks at a market stall in Praia, Cabo Verde",
+        "A family receiving a box of fresh food at home",
+        "A smiling market vendor at her well-stocked stall",
+      ],
+    },
+    sendPage: {
+      title: "Send food home",
+      subtitle: "Choose a package, add extras, and we deliver fresh food to your family in Cabo Verde.",
+    },
+    partnersPage: {
+      eyebrow: "For market vendors",
+      title: "Grow your market with 8Mealz",
+      body: "Families abroad want to feed their loved ones in Cabo Verde. Partner with us to source and pack fresh baskets. We bring the orders, you bring the market you already know.",
+      benefits: [
+        {
+          title: "Steady new demand",
+          body: "Orders come from the diaspora sending food home, a reliable stream beyond your walk-in customers.",
+        },
+        {
+          title: "Fast, fair payouts",
+          body: "You are paid for every fulfilled basket. No haggling, no waiting on informal remittances.",
+        },
+        {
+          title: "Free during pilot",
+          body: "No monthly fee while we launch. You earn on every basket you fulfil. Monthly plans come later, only once there are enough orders to justify them.",
+        },
+      ],
+      applyTitle: "Apply to partner",
+      applyBody: "Tell us about your market. We review every application and reach out within a few days.",
+    },
+    orderPage: {
+      title: "Order reserved",
+      body: "We've reserved fresh food for {name}. Share this pickup code with them.",
+      pickupCode: "Pickup code",
+      pickupAt: "Pickup at",
+      sendAnother: "Send another",
+      backHome: "Back home",
+      demoNote: "This is a demo. Order data resets when the server restarts.",
+    },
+    errors: {
+      checkForm: "Please check the form",
+      required: "This field is required",
+      invalidEmail: "Enter a valid email",
+      invalidPhone: "Enter a valid WhatsApp number",
+      pickCountry: "Pick a country",
+      somethingWrong: "Something went wrong. Please try again.",
+      orderFailed: "We couldn't submit your order. Please try again.",
+      unknownPackage: "That package is no longer available. Please choose another.",
+      unknownNeighborhood: "Please choose a neighborhood from the list.",
+    },
+    catalog: {
+      packages: {
+        "essentials-8": {
+          feeds: "1 week",
+          items: ["8 kg rice", "4 kg beans", "2 L cooking oil", "Salt, sugar, tomato paste", "8 eggs"],
+        },
+        "family-feast": {
+          feeds: "2 weeks",
+          items: [
+            "12 kg rice",
+            "6 kg beans",
+            "3 L cooking oil",
+            "Chicken (2 kg)",
+            "Dried fish (1 kg)",
+            "Vegetables & seasoning",
+          ],
+        },
+        "protein-plus": {
+          feeds: "2 weeks",
+          items: [
+            "Beef (3 kg)",
+            "Chicken (3 kg)",
+            "Dried fish (2 kg)",
+            "8 kg rice",
+            "Beans, oil & staples",
+            "Fresh vegetables",
+          ],
+        },
+      },
+      extras: {
+        gas: { name: "Cooking gas refill", note: "13 kg bottle refill" },
+        produce: { name: "Fresh produce box", note: "Seasonal fruit & vegetables" },
+        topup: { name: "Phone top-up", note: "Mobile credit for the family" },
+        hygiene: { name: "Household and hygiene", note: "Soap, detergent, essentials" },
+      },
+      countries: {
+        angola: "Angola",
+        mozambique: "Mozambique",
+        "guinea-bissau": "Guinea-Bissau",
+        "sao-tome": "São Tomé and Príncipe",
+        senegal: "Senegal",
+        brazil: "Brazil",
+      },
+    },
   },
   pt: {
     nav: {
@@ -469,7 +573,118 @@ export const dictionary = {
       invalidEmail: "Introduza um email válido",
       somethingWrong: "Algo correu mal. Tente novamente.",
     },
+    a11y: {
+      menu: "Menu",
+      primaryNav: "Principal",
+      language: "Idioma",
+    },
+    media: {
+      heroAlt:
+        "Uma vendedora de mercado a entregar um cesto de verduras, cereais e peixe seco a uma jovem sorridente num mercado ao ar livre",
+      heroBadge: "Comida entregue em casa",
+      photoAlts: [
+        "Legumes frescos e sacos de cereais numa banca de mercado na Praia, Cabo Verde",
+        "Uma família a receber uma caixa de comida fresca em casa",
+        "Uma vendedora sorridente na sua banca bem abastecida",
+      ],
+    },
+    sendPage: {
+      title: "Envie comida para casa",
+      subtitle: "Escolha um pacote, adicione extras e entregamos comida fresca à sua família em Cabo Verde.",
+    },
+    partnersPage: {
+      eyebrow: "Para vendedores de mercado",
+      title: "Faça crescer o seu mercado com a 8Mealz",
+      body: "As famílias no estrangeiro querem alimentar quem amam em Cabo Verde. Seja nosso parceiro para comprar e preparar cabazes frescos. Nós trazemos as encomendas, você traz o mercado que já conhece.",
+      benefits: [
+        {
+          title: "Nova procura constante",
+          body: "As encomendas vêm da diáspora que envia comida para casa, um fluxo fiável para além dos clientes de balcão.",
+        },
+        {
+          title: "Pagamentos rápidos e justos",
+          body: "Recebe por cada cabaz entregue. Sem regatear, sem esperar por remessas informais.",
+        },
+        {
+          title: "Grátis durante o piloto",
+          body: "Sem mensalidade enquanto arrancamos. Ganha em cada cabaz que prepara. Os planos mensais vêm depois, só quando houver encomendas suficientes para os justificar.",
+        },
+      ],
+      applyTitle: "Candidatar-se a parceiro",
+      applyBody: "Fale-nos do seu mercado. Analisamos cada candidatura e respondemos dentro de alguns dias.",
+    },
+    orderPage: {
+      title: "Encomenda reservada",
+      body: "Reservámos comida fresca para {name}. Partilhe este código de levantamento com essa pessoa.",
+      pickupCode: "Código de levantamento",
+      pickupAt: "Levantamento em",
+      sendAnother: "Enviar outra",
+      backHome: "Voltar ao início",
+      demoNote: "Isto é uma demo. Os dados das encomendas reiniciam quando o servidor reinicia.",
+    },
+    errors: {
+      checkForm: "Verifique o formulário",
+      required: "Este campo é obrigatório",
+      invalidEmail: "Introduza um email válido",
+      invalidPhone: "Introduza um número de WhatsApp válido",
+      pickCountry: "Escolha um país",
+      somethingWrong: "Algo correu mal. Tente novamente.",
+      orderFailed: "Não conseguimos enviar a sua encomenda. Tente novamente.",
+      unknownPackage: "Esse pacote já não está disponível. Escolha outro.",
+      unknownNeighborhood: "Escolha um bairro da lista.",
+    },
+    catalog: {
+      packages: {
+        "essentials-8": {
+          feeds: "1 semana",
+          items: ["8 kg de arroz", "4 kg de feijão", "2 L de óleo", "Sal, açúcar, massa de tomate", "8 ovos"],
+        },
+        "family-feast": {
+          feeds: "2 semanas",
+          items: [
+            "12 kg de arroz",
+            "6 kg de feijão",
+            "3 L de óleo",
+            "Frango (2 kg)",
+            "Peixe seco (1 kg)",
+            "Legumes e temperos",
+          ],
+        },
+        "protein-plus": {
+          feeds: "2 semanas",
+          items: [
+            "Carne de vaca (3 kg)",
+            "Frango (3 kg)",
+            "Peixe seco (2 kg)",
+            "8 kg de arroz",
+            "Feijão, óleo e produtos básicos",
+            "Legumes frescos",
+          ],
+        },
+      },
+      extras: {
+        gas: { name: "Recarga de gás", note: "Recarga de garrafa de 13 kg" },
+        produce: { name: "Cabaz de frescos", note: "Fruta e legumes da época" },
+        topup: { name: "Recarga de telemóvel", note: "Saldo para a família" },
+        hygiene: { name: "Casa e higiene", note: "Sabão, detergente, essenciais" },
+      },
+      countries: {
+        angola: "Angola",
+        mozambique: "Moçambique",
+        "guinea-bissau": "Guiné-Bissau",
+        "sao-tome": "São Tomé e Príncipe",
+        senegal: "Senegal",
+        brazil: "Brasil",
+      },
+    },
   },
+}
+
+// Kriol (Kabuverdianu) lines shown in every language on the hero and
+// "How it works". Rendered with lang="kea" so screen readers switch voice.
+export const kriol = {
+  hero: "Manda kumida pa kasa, ka só dinheru.",
+  how: "Bu ta paga li, bu família ta bai buska kumida na un merkadu ki es ta konfia. Ka ten dinheru ki ta perdi na kaminhu.",
 }
 
 export type Dictionary = (typeof dictionary)["en"]

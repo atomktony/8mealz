@@ -11,7 +11,7 @@ import { submitPilot, type ActionResult } from "@/app/actions"
 const initial: ActionResult = { ok: false, error: "" }
 
 export function PilotSignup() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [state, action, pending] = useActionState(submitPilot, initial)
   const submitted = state.ok
 
@@ -42,6 +42,7 @@ export function PilotSignup() {
               ) : (
                 <form action={action} className="relative space-y-4">
                   <Honeypot />
+                  <input type="hidden" name="lang" value={lang} />
                   <Field label={t.pilot.name} htmlFor="p-name" error={state.fieldErrors?.name}>
                     <Input id="p-name" name="name" autoComplete="name" required />
                   </Field>
@@ -56,6 +57,11 @@ export function PilotSignup() {
                       <Input id="p-city" name="city" required />
                     </Field>
                   </div>
+                  {!state.ok && state.error && !state.fieldErrors && (
+                    <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive" role="alert">
+                      {state.error}
+                    </p>
+                  )}
                   <Button type="submit" variant="accent" className="w-full" disabled={pending}>
                     {pending ? t.common.sending : t.pilot.submit}
                   </Button>

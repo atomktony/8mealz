@@ -5,6 +5,7 @@ import { Container } from "../container"
 import { ButtonLink } from "../ui/button"
 import { useLang } from "@/lib/i18n"
 import { packages } from "@/lib/data"
+import { packageCopy } from "@/lib/catalog-copy"
 import { Price } from "../ui/price"
 
 export function Packages() {
@@ -18,7 +19,9 @@ export function Packages() {
             <p className="mt-3 text-pretty text-muted-foreground">{t.packages.subtitle}</p>
           </div>
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {packages.map((pkg) => (
+            {packages.map((pkg) => {
+              const copy = packageCopy(t, pkg)
+              return (
               <div
                 key={pkg.id}
                 className={[
@@ -40,13 +43,13 @@ export function Packages() {
                     <Users className="h-3.5 w-3.5" /> {t.packages.serves} {pkg.serves}
                   </span>
                   <span className="inline-flex items-center gap-1.5">
-                    <CalendarClock className="h-3.5 w-3.5" /> {t.packages.feeds} {pkg.feeds}
+                    <CalendarClock className="h-3.5 w-3.5" /> {t.packages.feeds} {copy.feeds}
                   </span>
                 </div>
                 <div className="mt-5 border-t border-border pt-5">
                   <p className="text-xs font-600 uppercase tracking-wide text-muted-foreground">{t.packages.includes}</p>
                   <ul className="mt-3 space-y-2">
-                    {pkg.items.map((item) => (
+                    {copy.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm">
                         <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                         <span>{item}</span>
@@ -62,7 +65,8 @@ export function Packages() {
                   {t.packages.choose}
                 </ButtonLink>
               </div>
-            ))}
+              )
+            })}
           </div>
         </div>
       </Container>

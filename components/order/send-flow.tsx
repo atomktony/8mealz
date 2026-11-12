@@ -31,7 +31,7 @@ function isValidPhone(value: string): boolean {
 }
 
 export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [packageId, setPackageId] = useState(initialPackageId)
   const [extraIds, setExtraIds] = useState<string[]>([])
   const [form, setForm] = useState<FormState>(emptyForm)
@@ -87,7 +87,7 @@ export function SendFlow({ initialPackageId }: { initialPackageId: string }) {
     }
 
     startTransition(async () => {
-      const res = await placeOrder({ packageId: pkg.id, extraIds, ...form })
+      const res = await placeOrder({ packageId: pkg.id, extraIds, ...form }, lang)
       if (res.ok && res.data) {
         setConfirmedCode(res.data.code)
         window.scrollTo({ top: 0, behavior: "smooth" })

@@ -3,6 +3,7 @@
 import { ShoppingBasket, CreditCard, PackageCheck } from "lucide-react"
 import { Container } from "../container"
 import { useLang } from "@/lib/i18n"
+import { kriol } from "@/lib/dictionary"
 
 const icons = [ShoppingBasket, CreditCard, PackageCheck]
 
@@ -14,6 +15,9 @@ export function HowItWorks() {
         <div className="py-16 lg:py-24">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-balance text-3xl sm:text-4xl">{t.how.title}</h2>
+            <p lang="kea" className="mt-4 text-pretty text-lg font-500 italic leading-relaxed text-primary">
+              {kriol.how}
+            </p>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {t.how.steps.map((s, i) => {

@@ -11,7 +11,7 @@ import { submitPartner, type ActionResult } from "@/app/actions"
 const initial: ActionResult = { ok: false, error: "" }
 
 export function PartnerForm() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [state, action, pending] = useActionState(submitPartner, initial)
 
   if (state.ok) {
@@ -27,6 +27,7 @@ export function PartnerForm() {
   return (
     <form action={action} className="relative space-y-5 rounded-2xl border border-border bg-card p-6 sm:p-8">
       <Honeypot />
+      <input type="hidden" name="lang" value={lang} />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={t.partners.business} htmlFor="business" error={state.fieldErrors?.business}>
           <Input id="business" name="business" required />
@@ -63,6 +64,11 @@ export function PartnerForm() {
       <Field label={t.partners.message} htmlFor="message" hint={t.partners.messageHint}>
         <Textarea id="message" name="message" />
       </Field>
+      {!state.ok && state.error && !state.fieldErrors && (
+        <p className="rounded-lg bg-destructive/10 px-4 py-3 text-sm text-destructive" role="alert">
+          {state.error}
+        </p>
+      )}
       <Button type="submit" size="lg" className="w-full" disabled={pending}>
         {pending ? t.common.sending : t.partners.submit}
       </Button>

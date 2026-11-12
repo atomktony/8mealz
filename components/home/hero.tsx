@@ -5,6 +5,7 @@ import { ArrowRight, ShieldCheck } from "lucide-react"
 import { Container } from "../container"
 import { ButtonLink } from "../ui/button"
 import { useLang } from "@/lib/i18n"
+import { kriol } from "@/lib/dictionary"
 
 export function Hero() {
   const { t } = useLang()
@@ -20,15 +21,18 @@ export function Hero() {
             <h1 className="mt-5 text-balance text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
               {t.hero.title}
             </h1>
-            <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+            <p lang="kea" className="mt-4 text-balance font-heading text-xl font-600 italic text-primary sm:text-2xl">
+              {kriol.hero}
+            </p>
+            <p className="mt-4 max-w-lg text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
               {t.hero.subtitle}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/send" size="lg">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ButtonLink href="/send" size="lg" className="whitespace-nowrap">
                 {t.hero.ctaPrimary}
                 <ArrowRight className="h-4 w-4" />
               </ButtonLink>
-              <ButtonLink href="/#how" size="lg" variant="outline">
+              <ButtonLink href="/#how" size="lg" variant="outline" className="whitespace-nowrap">
                 {t.hero.ctaSecondary}
               </ButtonLink>
             </div>
@@ -51,7 +55,7 @@ export function Hero() {
             <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-border shadow-xl sm:aspect-square lg:aspect-4/5">
               <Image
                 src="/images/hero-market.jpg"
-                alt="A market vendor handing a basket of fresh greens, grains and dried fish to a smiling young woman at an open-air market"
+                alt={t.media.heroAlt}
                 fill
                 priority={true}
                 quality={75}
@@ -60,7 +64,7 @@ export function Hero() {
               />
             </div>
             <div className="absolute -bottom-4 -left-4 hidden rounded-xl border border-border bg-card p-4 shadow-lg sm:block">
-              <p className="font-script text-2xl text-primary">Food, delivered home</p>
+              <p className="font-script text-2xl text-primary">{t.media.heroBadge}</p>
             </div>
           </div>
         </div>

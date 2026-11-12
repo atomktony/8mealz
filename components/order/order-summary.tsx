@@ -3,6 +3,7 @@
 import type { Extra, Pkg } from "@/lib/data"
 import { formatMoney, type OrderTotals } from "@/lib/pricing"
 import { Price } from "../ui/price"
+import { extraCopy } from "@/lib/catalog-copy"
 import { useLang } from "@/lib/i18n"
 
 export function OrderSummary({
@@ -35,7 +36,7 @@ export function OrderSummary({
             {selectedExtras.length === 0 && <span className="text-muted-foreground">{t.order.noExtras}</span>}
             {selectedExtras.map((extra) => (
               <span key={extra.id}>
-                {extra.name}
+                {extraCopy(t, extra).name}
                 <Price amount={extra.price} className="ml-2 font-600" />
               </span>
             ))}

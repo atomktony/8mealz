@@ -25,7 +25,7 @@ export function Navbar() {
       <Container>
         <div className="flex h-16 items-center justify-between gap-4">
           <Logo />
-          <nav className="hidden items-center gap-7 md:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-7 md:flex" aria-label={t.a11y.primaryNav}>
             {links.map((l) => (
               <Link
                 key={l.href}
@@ -45,7 +45,7 @@ export function Navbar() {
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-foreground md:hidden"
-            aria-label="Menu"
+            aria-label={t.a11y.menu}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >

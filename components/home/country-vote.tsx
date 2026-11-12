@@ -7,12 +7,13 @@ import { Button } from "../ui/button"
 import { Select } from "../ui/field"
 import { useLang } from "@/lib/i18n"
 import { voteCountries } from "@/lib/data"
+import { countryName } from "@/lib/catalog-copy"
 import { submitVote, type ActionResult } from "@/app/actions"
 
 const initial: ActionResult = { ok: false, error: "" }
 
 export function CountryVote() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [state, action, pending] = useActionState(submitVote, initial)
 
   return (
@@ -31,6 +32,7 @@ export function CountryVote() {
               </div>
             ) : (
               <form action={action} className="mt-8 flex w-full max-w-md flex-col gap-3 sm:flex-row">
+                <input type="hidden" name="lang" value={lang} />
                 <label htmlFor="vote-country" className="sr-only">
                   {t.vote.title}
                 </label>
@@ -40,7 +42,7 @@ export function CountryVote() {
                   </option>
                   {voteCountries.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.name}
+                      {countryName(t, c)}
                     </option>
                   ))}
                 </Select>
@@ -48,6 +50,11 @@ export function CountryVote() {
                   {pending ? t.common.sending : t.vote.submit}
                 </Button>
               </form>
+            )}
+            {!state.ok && state.error && (
+              <p className="mt-3 text-sm text-destructive" role="alert">
+                {state.error}
+              </p>
             )}
           </div>
         </div>
