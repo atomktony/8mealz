@@ -16,6 +16,7 @@ export function FounderNote() {
               alt={t.founder.photoAlt}
               fill
               sizes="240px"
+              quality={75}
               className="object-cover"
             />
           </div>

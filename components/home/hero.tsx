@@ -53,8 +53,9 @@ export function Hero() {
                 src="/images/hero-market.jpg"
                 alt="A market vendor handing a basket of fresh greens, grains and dried fish to a smiling young woman at an open-air market"
                 fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority={true}
+                quality={75}
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
