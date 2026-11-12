@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <Container>
-        <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:pt-11.5 lg:pb-24">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-600 text-primary">
               <ShieldCheck className="h-3.5 w-3.5" />
@@ -34,11 +34,11 @@ export function Hero() {
             </div>
             <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-border pt-6">
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">92%</dt>
+                <dt className="font-heading text-2xl font-700 text-primary">100%</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat1}</dd>
               </div>
               <div>
-                <dt className="font-heading text-2xl font-700 text-primary">100+</dt>
+                <dt className="font-heading text-2xl font-700 text-primary">Praia</dt>
                 <dd className="mt-1 text-xs leading-snug text-muted-foreground">{t.hero.stat2}</dd>
               </div>
               <div>
@@ -50,8 +50,8 @@ export function Hero() {
           <div className="relative">
             <div className="relative aspect-4/5 overflow-hidden rounded-2xl border border-border shadow-xl sm:aspect-square lg:aspect-4/5">
               <Image
-                src="/images/hero-market.png"
-                alt="A market vendor handing fresh food across a stall to a customer in Praia, Cabo Verde"
+                src="/images/hero-market.jpg"
+                alt="A market vendor handing a basket of fresh greens, grains and dried fish to a smiling young woman at an open-air market"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"

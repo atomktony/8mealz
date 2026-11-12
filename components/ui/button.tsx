@@ -20,6 +20,10 @@ const sizes: Record<Size, string> = {
   lg: "h-13 px-7 text-base",
 }
 
+export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {
+  return classes(variant, size, className)
+}
+
 function classes(variant: Variant, size: Size, className?: string) {
   return [base, variants[variant], sizes[size], className].filter(Boolean).join(" ")
 }

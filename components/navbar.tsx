@@ -38,7 +38,7 @@ export function Navbar() {
           </nav>
           <div className="hidden items-center gap-3 md:flex">
             <LanguageToggle />
-            <ButtonLink href="/send" size="sm">
+            <ButtonLink href="/send" size="sm" variant="accent">
               {t.nav.send}
             </ButtonLink>
           </div>

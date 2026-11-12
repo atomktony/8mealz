@@ -70,7 +70,7 @@ export const extras: Extra[] = [
   { id: "gas", name: "Cooking gas refill", price: 22, note: "13 kg bottle refill" },
   { id: "produce", name: "Fresh produce box", price: 14, note: "Seasonal fruit & vegetables" },
   { id: "topup", name: "Phone top-up", price: 8, note: "Mobile credit for the family" },
-  { id: "hygiene", name: "Household & hygiene", price: 16, note: "Soap, detergent, essentials" },
+  { id: "hygiene", name: "Household and hygiene", price: 16, note: "Soap, detergent, essentials" },
 ]
 
 export const neighborhoods: Neighborhood[] = [
@@ -80,8 +80,6 @@ export const neighborhoods: Neighborhood[] = [
   { id: "fazenda", name: "Fazenda", city: "Praia" },
   { id: "achada-grande", name: "Achada Grande", city: "Praia" },
   { id: "tira-chapeu", name: "Tira Chapéu", city: "Praia" },
-  { id: "mindelo", name: "Mindelo", city: "São Vicente" },
-  { id: "assomada", name: "Assomada", city: "Santa Catarina" },
 ]
 
 export function getPackage(id: string): Pkg | undefined {
